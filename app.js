@@ -237,10 +237,6 @@ const businesses = [
     verified: false
   },
 
-  /* =======================================================
-     V2.5 NEW BUSINESSES
-     ======================================================= */
-
   {
     id: 13,
     name: "Nawab's Kitchen",
@@ -294,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderFeatured();
   renderBusinesses(businesses);
-
   setupEventListeners();
 
 });
@@ -310,40 +305,31 @@ function setupEventListeners() {
     document.getElementById("listingForm");
 
   if (listingForm) {
-
     listingForm.addEventListener(
       "submit",
       handleListingSubmit
     );
-
   }
-
 
   const searchInput =
     document.getElementById("searchInput");
 
   if (searchInput) {
-
     searchInput.addEventListener(
       "input",
       filterBusinesses
     );
-
   }
-
 
   const locationFilter =
     document.getElementById("locationFilter");
 
   if (locationFilter) {
-
     locationFilter.addEventListener(
       "change",
       filterBusinesses
     );
-
   }
-
 
   document
     .querySelectorAll("#mainNav a")
@@ -479,7 +465,6 @@ function renderBusinesses(list) {
     noResults.style.display = "none";
   }
 
-
   list.forEach(business => {
 
     const card =
@@ -492,18 +477,15 @@ function renderBusinesses(list) {
         ? `<div class="status-badge verified">✓ Verified</div>`
         : `<div class="status-badge unclaimed">Unclaimed</div>`;
 
-
     const featured =
       business.featured
         ? `<div class="featured-mini">⭐ Featured</div>`
         : "";
 
-
     const favorite =
       isFavorite(business.id)
         ? "❤️"
         : "♡";
-
 
     card.innerHTML = `
 
@@ -519,23 +501,19 @@ function renderBusinesses(list) {
 
       </div>
 
-
       <div class="card-body">
 
         <div class="card-category">
           ${escapeHTML(business.category)}
         </div>
 
-
         <h3>
           ${escapeHTML(business.name)}
         </h3>
 
-
         <div class="card-info">
           📍 ${escapeHTML(business.location)}
         </div>
-
 
         <div class="card-info">
 
@@ -549,11 +527,9 @@ function renderBusinesses(list) {
 
         </div>
 
-
         <div class="card-info">
           🕒 ${escapeHTML(business.hours)}
         </div>
-
 
         <div class="card-actions">
 
@@ -564,7 +540,6 @@ function renderBusinesses(list) {
             View Details
           </button>
 
-
           <a
             class="card-btn primary"
             href="https://wa.me/${business.phone}"
@@ -573,7 +548,6 @@ function renderBusinesses(list) {
           >
             WhatsApp
           </a>
-
 
           <button
             class="favorite-btn"
@@ -593,7 +567,6 @@ function renderBusinesses(list) {
     grid.appendChild(card);
 
   });
-
 
   if (resultsText) {
 
@@ -619,43 +592,35 @@ function filterBusinesses() {
   const locationFilter =
     document.getElementById("locationFilter");
 
-
   const search =
     searchInput
       ? searchInput.value.toLowerCase().trim()
       : "";
-
 
   const location =
     locationFilter
       ? locationFilter.value.toLowerCase()
       : "all";
 
-
   const filtered =
     businesses.filter(business => {
 
       const text = `
-
         ${business.name}
         ${business.category}
         ${business.location}
         ${business.province}
         ${business.address}
         ${business.description}
-
       `.toLowerCase();
-
 
       const matchesSearch =
         !search ||
         text.includes(search);
 
-
       const matchesLocation =
         location === "all" ||
         business.location.toLowerCase() === location;
-
 
       return (
         matchesSearch &&
@@ -663,7 +628,6 @@ function filterBusinesses() {
       );
 
     });
-
 
   renderBusinesses(filtered);
 
@@ -682,23 +646,18 @@ function quickCategory(category) {
   const locationFilter =
     document.getElementById("locationFilter");
 
-
   if (searchInput) {
     searchInput.value = category;
   }
-
 
   if (locationFilter) {
     locationFilter.value = "all";
   }
 
-
   filterBusinesses();
-
 
   const businessesSection =
     document.getElementById("businesses");
-
 
   if (businessesSection) {
 
@@ -723,16 +682,13 @@ function clearFilters() {
   const locationFilter =
     document.getElementById("locationFilter");
 
-
   if (searchInput) {
     searchInput.value = "";
   }
 
-
   if (locationFilter) {
     locationFilter.value = "all";
   }
-
 
   renderBusinesses(businesses);
 
@@ -750,12 +706,9 @@ function openBusiness(id) {
       item => item.id === id
     );
 
-
   if (!business) return;
 
-
   addRecentlyViewed(business.id);
-
 
   const modal =
     document.getElementById("businessModal");
@@ -763,33 +716,27 @@ function openBusiness(id) {
   const body =
     document.getElementById("modalBody");
 
-
   if (!modal || !body) return;
-
 
   const whatsappMessage =
     encodeURIComponent(
       `Hello, I found ${business.name} on Zambia Business Hub. I would like more information.`
     );
 
-
   const claimMessage =
     encodeURIComponent(
       `Hello Zambia Business Hub. I am the owner or representative of ${business.name} and would like to claim/update this listing.`
     );
-
 
   const verificationStatus =
     business.verified
       ? "🟢 Verified business"
       : "🟡 Unclaimed — owner verification pending";
 
-
   const favorite =
     isFavorite(business.id)
       ? "❤️ Remove from Favorites"
       : "♡ Save to Favorites";
-
 
   body.innerHTML = `
 
@@ -797,16 +744,13 @@ function openBusiness(id) {
       ${escapeHTML(business.icon)}
     </div>
 
-
     <div class="modal-label">
       ${escapeHTML(business.category)}
     </div>
 
-
     <h2 class="modal-title">
       ${escapeHTML(business.name)}
     </h2>
-
 
     <div class="modal-label">
       Listing Status
@@ -816,7 +760,6 @@ function openBusiness(id) {
       ${verificationStatus}
     </div>
 
-
     <div class="modal-label">
       Location
     </div>
@@ -824,7 +767,6 @@ function openBusiness(id) {
     <div class="modal-value">
       ${escapeHTML(business.address)}
     </div>
-
 
     <div class="modal-label">
       Public Rating
@@ -835,7 +777,6 @@ function openBusiness(id) {
       (${escapeHTML(business.reviews)} public reviews)
     </div>
 
-
     <div class="modal-label">
       Opening Hours
     </div>
@@ -844,7 +785,6 @@ function openBusiness(id) {
       ${escapeHTML(business.hours)}
     </div>
 
-
     <div class="modal-label">
       About
     </div>
@@ -852,7 +792,6 @@ function openBusiness(id) {
     <div class="modal-value">
       ${escapeHTML(business.description)}
     </div>
-
 
     <div class="modal-actions">
 
@@ -863,7 +802,6 @@ function openBusiness(id) {
         📞 Call
       </a>
 
-
       <a
         class="card-btn primary"
         href="https://wa.me/${business.phone}?text=${whatsappMessage}"
@@ -872,7 +810,6 @@ function openBusiness(id) {
       >
         💬 WhatsApp
       </a>
-
 
       <a
         class="card-btn"
@@ -883,14 +820,12 @@ function openBusiness(id) {
         📍 Directions
       </a>
 
-
       <button
         class="card-btn"
         onclick="toggleFavorite(${business.id})"
       >
         ${favorite}
       </button>
-
 
       <a
         class="card-btn"
@@ -904,7 +839,6 @@ function openBusiness(id) {
     </div>
 
   `;
-
 
   modal.classList.add("active");
 
@@ -922,11 +856,9 @@ function closeModal() {
   const modal =
     document.getElementById("businessModal");
 
-
   if (modal) {
     modal.classList.remove("active");
   }
-
 
   document.body.style.overflow = "";
 
@@ -941,7 +873,6 @@ function toggleMenu() {
 
   const nav =
     document.getElementById("mainNav");
-
 
   if (nav) {
     nav.classList.toggle("active");
@@ -976,34 +907,27 @@ function toggleFavorite(id) {
 
   }
 
-
   localStorage.setItem(
     "zbhFavorites",
     JSON.stringify(favorites)
   );
 
-
-  const currentSearch =
+  const searchInput =
     document.getElementById("searchInput");
 
-
-  if (currentSearch) {
+  if (searchInput && searchInput.value.trim()) {
     filterBusinesses();
   } else {
     renderBusinesses(businesses);
   }
-
 
   const business =
     businesses.find(
       item => item.id === id
     );
 
-
   if (business) {
-
     openBusiness(id);
-
   }
 
 }
@@ -1020,13 +944,10 @@ function addRecentlyViewed(id) {
       item => item !== id
     );
 
-
   recentlyViewed.unshift(id);
-
 
   recentlyViewed =
     recentlyViewed.slice(0, 5);
-
 
   localStorage.setItem(
     "zbhRecentlyViewed",
@@ -1042,4 +963,13 @@ function addRecentlyViewed(id) {
 
 function handleListingSubmit(event) {
 
-  event.prevent
+  event.preventDefault();
+
+  const businessName =
+    document.getElementById("ownerBusiness")?.value.trim();
+
+  const category =
+    document.getElementById("ownerCategory")?.value.trim();
+
+  const location =
+    doc
