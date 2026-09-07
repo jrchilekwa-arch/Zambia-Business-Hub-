@@ -1,10 +1,12 @@
-/* =========================================
-   ZAMBIA BUSINESS HUB V2.1
-   ========================================= */
+/* ==========================================
+   ZAMBIA BUSINESS HUB V2.2
+   ========================================== */
+
 
 /*
-   IMPORTANT:
-   Replace this number with YOUR WhatsApp number.
+   IMPORTANT
+   ----------
+   Replace this with YOUR WhatsApp number.
 
    Example:
    const HUB_WHATSAPP = "260971234567";
@@ -13,9 +15,9 @@
 const HUB_WHATSAPP = "260765054612";
 
 
-/* =========================================
-   BUSINESS DATA
-   ========================================= */
+/* ==========================================
+   BUSINESS DATABASE
+   ========================================== */
 
 const businesses = [
 
@@ -25,10 +27,11 @@ const businesses = [
     category: "Restaurant",
     location: "Lusaka",
     icon: "🍽️",
-    description:
-      "Fresh meals, local dishes and convenient dining in Lusaka.",
+    description: "Fresh meals, local dishes and convenient dining in Lusaka.",
     phone: "260000000001",
-    unclaimed: true
+    hours: "Open today • 08:00 – 21:00",
+    featured: true,
+    claimed: false
   },
 
   {
@@ -37,10 +40,11 @@ const businesses = [
     category: "Beauty",
     location: "Lusaka",
     icon: "💇",
-    description:
-      "Hair, beauty and personal care services.",
+    description: "Hair, beauty and personal care services.",
     phone: "260000000002",
-    unclaimed: true
+    hours: "Open today • 08:00 – 18:00",
+    featured: false,
+    claimed: false
   },
 
   {
@@ -49,10 +53,11 @@ const businesses = [
     category: "Lodge",
     location: "Livingstone",
     icon: "🏨",
-    description:
-      "Comfortable accommodation for visitors and travellers.",
+    description: "Comfortable accommodation for visitors and travellers.",
     phone: "260000000003",
-    unclaimed: true
+    hours: "Open 24 hours",
+    featured: true,
+    claimed: false
   },
 
   {
@@ -61,10 +66,11 @@ const businesses = [
     category: "Services",
     location: "Kitwe",
     icon: "🛠️",
-    description:
-      "Professional business support and digital services.",
+    description: "Professional business support and digital services.",
     phone: "260000000004",
-    unclaimed: true
+    hours: "Open today • 08:00 – 17:00",
+    featured: false,
+    claimed: false
   },
 
   {
@@ -73,10 +79,11 @@ const businesses = [
     category: "Shopping",
     location: "Lusaka",
     icon: "🛍️",
-    description:
-      "Fashion, clothing and lifestyle products.",
+    description: "Fashion, clothing and lifestyle products.",
     phone: "260000000005",
-    unclaimed: true
+    hours: "Open today • 09:00 – 18:00",
+    featured: true,
+    claimed: false
   },
 
   {
@@ -85,10 +92,11 @@ const businesses = [
     category: "Photography",
     location: "Lusaka",
     icon: "📸",
-    description:
-      "Photography services for events, portraits and businesses.",
+    description: "Photography for events, portraits and businesses.",
     phone: "260000000006",
-    unclaimed: true
+    hours: "By appointment",
+    featured: false,
+    claimed: false
   },
 
   {
@@ -97,10 +105,11 @@ const businesses = [
     category: "Transport",
     location: "Ndola",
     icon: "🚗",
-    description:
-      "Local transport and travel services.",
+    description: "Local transport and travel services.",
     phone: "260000000007",
-    unclaimed: true
+    hours: "Open today • 06:00 – 22:00",
+    featured: false,
+    claimed: false
   },
 
   {
@@ -109,10 +118,11 @@ const businesses = [
     category: "Restaurant",
     location: "Kabwe",
     icon: "🍔",
-    description:
-      "Affordable meals, snacks and refreshments.",
+    description: "Affordable meals, snacks and refreshments.",
     phone: "260000000008",
-    unclaimed: true
+    hours: "Open today • 07:00 – 20:00",
+    featured: false,
+    claimed: false
   },
 
   {
@@ -121,10 +131,11 @@ const businesses = [
     category: "Beauty",
     location: "Chingola",
     icon: "💅",
-    description:
-      "Beauty treatments, styling and personal care.",
+    description: "Beauty treatments, styling and personal care.",
     phone: "260000000009",
-    unclaimed: true
+    hours: "Open today • 08:00 – 18:00",
+    featured: false,
+    claimed: false
   },
 
   {
@@ -133,10 +144,11 @@ const businesses = [
     category: "Lodge",
     location: "Livingstone",
     icon: "🛏️",
-    description:
-      "Accommodation and travel-friendly services.",
+    description: "Accommodation and travel-friendly services.",
     phone: "260000000010",
-    unclaimed: true
+    hours: "Open 24 hours",
+    featured: true,
+    claimed: false
   },
 
   {
@@ -145,10 +157,11 @@ const businesses = [
     category: "Services",
     location: "Lusaka",
     icon: "💻",
-    description:
-      "Web design, digital solutions and business technology.",
+    description: "Web design, digital solutions and business technology.",
     phone: "260000000011",
-    unclaimed: true
+    hours: "Open today • 08:00 – 17:00",
+    featured: true,
+    claimed: false
   },
 
   {
@@ -157,22 +170,28 @@ const businesses = [
     category: "Shopping",
     location: "Lusaka",
     icon: "🏪",
-    description:
-      "Home products, household items and everyday essentials.",
+    description: "Home products, household items and everyday essentials.",
     phone: "260000000012",
-    unclaimed: true
+    hours: "Open today • 08:00 – 18:00",
+    featured: false,
+    claimed: false
   }
 
 ];
 
 
-/* =========================================
-   VARIABLES
-   ========================================= */
+/* ==========================================
+   STATE
+   ========================================== */
 
-let currentFilter = "all";
-let currentSearch = "";
-let currentLocation = "all";
+let activeFilter = "all";
+let searchTerm = "";
+let selectedLocation = "all";
+
+
+/* ==========================================
+   ELEMENTS
+   ========================================== */
 
 const businessGrid =
   document.getElementById("businessGrid");
@@ -183,31 +202,47 @@ const emptyState =
 const searchInput =
   document.getElementById("searchInput");
 
-const searchBtn =
-  document.getElementById("searchBtn");
+const searchButton =
+  document.getElementById("searchButton");
 
 const locationFilter =
   document.getElementById("locationFilter");
 
-const clearSearch =
-  document.getElementById("clearSearch");
-
 const businessCount =
   document.getElementById("businessCount");
 
+const clearButton =
+  document.getElementById("clearButton");
 
-/* =========================================
-   WHATSAPP
-   ========================================= */
+const mobileNav =
+  document.getElementById("mobileNav");
 
-function openWhatsApp(message) {
+const menuButton =
+  document.getElementById("menuButton");
 
-  if (
-    !HUB_WHATSAPP ||
-    HUB_WHATSAPP === "260000000000"
-  ) {
+const businessModal =
+  document.getElementById("businessModal");
+
+const modalContent =
+  document.getElementById("modalContent");
+
+const modalClose =
+  document.getElementById("modalClose");
+
+const modalBackground =
+  document.getElementById("modalBackground");
+
+
+/* ==========================================
+   WHATSAPP HUB
+   ========================================== */
+
+function openHubWhatsApp(message) {
+
+  if (HUB_WHATSAPP === "260000000000") {
+
     alert(
-      "Please add your Zambia Business Hub WhatsApp number in app.js first."
+      "Please add your real Zambia Business Hub WhatsApp number in app.js."
     );
 
     return;
@@ -223,22 +258,14 @@ function openWhatsApp(message) {
 }
 
 
-/* =========================================
+/* ==========================================
    BUSINESS WHATSAPP
-   ========================================= */
+   ========================================== */
 
-function businessWhatsApp(business) {
+function openBusinessWhatsApp(business) {
 
   const message =
-    `Hello ${business.name}, I found your business on Zambia Business Hub.`;
-
-  if (!business.phone) {
-    openWhatsApp(
-      `Hello Zambia Business Hub. I am interested in ${business.name}.`
-    );
-
-    return;
-  }
+    `Hello ${business.name}. I found your business on Zambia Business Hub and would like more information.`;
 
   const url =
     "https://wa.me/" +
@@ -250,32 +277,80 @@ function businessWhatsApp(business) {
 }
 
 
-/* =========================================
+/* ==========================================
    CLAIM BUSINESS
-   ========================================= */
+   ========================================== */
 
 function claimBusiness(business) {
 
   const message =
 `Hello Zambia Business Hub 👋
 
-I would like to claim/update the business listing for:
+I would like to claim/update my business listing.
 
-Business: ${business.name}
-Category: ${business.category}
-Location: ${business.location}
+Business:
+${business.name}
 
-Please let me know what information you need from me.
+Category:
+${business.category}
+
+Location:
+${business.location}
+
+Please let me know how I can verify and update this listing.
 
 Thank you.`;
 
-  openWhatsApp(message);
+  openHubWhatsApp(message);
 }
 
 
-/* =========================================
+/* ==========================================
+   FILTER BUSINESSES
+   ========================================== */
+
+function getFilteredBusinesses() {
+
+  return businesses.filter(business => {
+
+    const categoryMatch =
+      activeFilter === "all" ||
+      business.category === activeFilter;
+
+    const locationMatch =
+      selectedLocation === "all" ||
+      business.location === selectedLocation;
+
+    const searchableText =
+      (
+        business.name +
+        " " +
+        business.category +
+        " " +
+        business.location +
+        " " +
+        business.description
+      ).toLowerCase();
+
+    const searchMatch =
+      searchableText.includes(
+        searchTerm.toLowerCase()
+      );
+
+    return (
+      categoryMatch &&
+      locationMatch &&
+      searchMatch
+    );
+
+  });
+
+}
+
+
+/* ==========================================
    CREATE BUSINESS CARD
-   ========================================= */
+   ========================================== */
 
 function createBusinessCard(business) {
 
@@ -286,117 +361,107 @@ function createBusinessCard(business) {
 
   card.innerHTML = `
 
-    <div class="business-top">
+    <div class="card-top">
 
-      <div class="business-icon">
+      <div class="card-icon">
         ${business.icon}
       </div>
 
-      ${
-        business.unclaimed
-          ? `<span class="unclaimed">UNCLAIMED</span>`
-          : `<span class="unclaimed">LISTED</span>`
-      }
+      <div class="badges">
+
+        ${
+          business.featured
+            ? `<span class="featured-badge">★ FEATURED</span>`
+            : ""
+        }
+
+        ${
+          !business.claimed
+            ? `<span class="unclaimed-badge">UNCLAIMED</span>`
+            : ""
+        }
+
+      </div>
 
     </div>
+
 
     <h3>${business.name}</h3>
 
-    <span class="business-category">
+    <div class="card-category">
       ${business.category}
-    </span>
+    </div>
 
-    <div class="business-location">
+    <div class="card-location">
       📍 ${business.location}, Zambia
     </div>
 
-    <p class="business-description">
+    <p class="card-description">
       ${business.description}
     </p>
 
-    <div class="business-actions">
+    <div class="card-hours">
+      🕐 ${business.hours}
+    </div>
+
+
+    <div class="card-actions">
 
       <a
-        class="call-btn"
+        class="call"
         href="tel:+${business.phone}"
       >
         📞 Call
       </a>
 
       <button
-        class="whatsapp-btn"
-        onclick="businessWhatsApp(${business.id})"
+        class="whatsapp"
+        onclick="event.stopPropagation(); openBusinessWhatsApp(businesses.find(b => b.id === ${business.id}))"
       >
         💬 WhatsApp
       </button>
 
     </div>
 
+
     <button
-      class="claim-btn"
-      onclick="claimBusiness(${business.id})"
+      class="claim"
+      onclick="event.stopPropagation(); claimBusiness(businesses.find(b => b.id === ${business.id}))"
     >
       ✏️ Claim / Update this business
     </button>
 
   `;
 
+
+  card.addEventListener(
+    "click",
+    () => openModal(business)
+  );
+
+
   businessGrid.appendChild(card);
+
 }
 
 
-/* =========================================
-   RENDER BUSINESSES
-   ========================================= */
+/* ==========================================
+   RENDER
+   ========================================== */
 
 function renderBusinesses() {
 
   businessGrid.innerHTML = "";
 
-  const filtered =
-    businesses.filter(business => {
+  const results =
+    getFilteredBusinesses();
 
-      const matchesCategory =
-        currentFilter === "all" ||
-        business.category === currentFilter;
-
-      const matchesLocation =
-        currentLocation === "all" ||
-        business.location === currentLocation;
-
-      const searchText =
-        (
-          business.name +
-          " " +
-          business.category +
-          " " +
-          business.location +
-          " " +
-          business.description
-        ).toLowerCase();
-
-      const matchesSearch =
-        searchText.includes(
-          currentSearch.toLowerCase()
-        );
-
-      return (
-        matchesCategory &&
-        matchesLocation &&
-        matchesSearch
-      );
-
-    });
+  results.forEach(
+    business => createBusinessCard(business)
+  );
 
 
-  filtered.forEach(business => {
-
-    createBusinessCard(business);
-
-  });
-
-
-  if (filtered.length === 0) {
+  if (results.length === 0) {
 
     emptyState.classList.add("show");
 
@@ -409,28 +474,30 @@ function renderBusinesses() {
 }
 
 
-/* =========================================
+/* ==========================================
    SEARCH
-   ========================================= */
+   ========================================== */
 
 function performSearch() {
 
-  currentSearch =
+  searchTerm =
     searchInput.value.trim();
 
-  currentLocation =
+  selectedLocation =
     locationFilter.value;
 
-  currentFilter = "all";
+  activeFilter = "all";
 
   document
-    .querySelectorAll(".filter-btn")
-    .forEach(btn => {
+    .querySelectorAll(".filter")
+    .forEach(button => {
 
-      btn.classList.remove("active");
+      button.classList.remove("active");
 
-      if (btn.dataset.filter === "all") {
-        btn.classList.add("active");
+      if (
+        button.dataset.filter === "all"
+      ) {
+        button.classList.add("active");
       }
 
     });
@@ -446,11 +513,11 @@ function performSearch() {
 }
 
 
-/* =========================================
+/* ==========================================
    SEARCH EVENTS
-   ========================================= */
+   ========================================== */
 
-searchBtn.addEventListener(
+searchButton.addEventListener(
   "click",
   performSearch
 );
@@ -458,7 +525,7 @@ searchBtn.addEventListener(
 
 searchInput.addEventListener(
   "keydown",
-  function(event) {
+  event => {
 
     if (event.key === "Enter") {
       performSearch();
@@ -470,9 +537,9 @@ searchInput.addEventListener(
 
 locationFilter.addEventListener(
   "change",
-  function() {
+  () => {
 
-    currentLocation =
+    selectedLocation =
       locationFilter.value;
 
     renderBusinesses();
@@ -481,28 +548,28 @@ locationFilter.addEventListener(
 );
 
 
-/* =========================================
+/* ==========================================
    FILTER BUTTONS
-   ========================================= */
+   ========================================== */
 
 document
-  .querySelectorAll(".filter-btn")
+  .querySelectorAll(".filter")
   .forEach(button => {
 
     button.addEventListener(
       "click",
-      function() {
+      () => {
 
         document
-          .querySelectorAll(".filter-btn")
+          .querySelectorAll(".filter")
           .forEach(btn =>
             btn.classList.remove("active")
           );
 
-        this.classList.add("active");
+        button.classList.add("active");
 
-        currentFilter =
-          this.dataset.filter;
+        activeFilter =
+          button.dataset.filter;
 
         renderBusinesses();
 
@@ -512,37 +579,38 @@ document
   });
 
 
-/* =========================================
+/* ==========================================
    CATEGORY BUTTONS
-   ========================================= */
+   ========================================== */
 
 document
   .querySelectorAll(
-    ".category-card, .quick-category"
+    ".category-card, .quick-links button"
   )
   .forEach(button => {
 
     button.addEventListener(
       "click",
-      function() {
+      () => {
 
-        currentFilter =
-          this.dataset.category;
+        activeFilter =
+          button.dataset.category;
 
-        currentSearch = "";
+        searchTerm = "";
 
         searchInput.value = "";
 
         document
-          .querySelectorAll(".filter-btn")
-          .forEach(btn => {
+          .querySelectorAll(".filter")
+          .forEach(filter => {
 
-            btn.classList.remove("active");
+            filter.classList.remove("active");
 
             if (
-              btn.dataset.filter === currentFilter
+              filter.dataset.filter ===
+              activeFilter
             ) {
-              btn.classList.add("active");
+              filter.classList.add("active");
             }
 
           });
@@ -561,29 +629,32 @@ document
   });
 
 
-/* =========================================
-   CLEAR SEARCH
-   ========================================= */
+/* ==========================================
+   CLEAR
+   ========================================== */
 
-clearSearch.addEventListener(
+clearButton.addEventListener(
   "click",
-  function() {
+  () => {
 
-    currentSearch = "";
-    currentFilter = "all";
-    currentLocation = "all";
+    activeFilter = "all";
+    searchTerm = "";
+    selectedLocation = "all";
 
     searchInput.value = "";
+
     locationFilter.value = "all";
 
     document
-      .querySelectorAll(".filter-btn")
-      .forEach(btn => {
+      .querySelectorAll(".filter")
+      .forEach(button => {
 
-        btn.classList.remove("active");
+        button.classList.remove("active");
 
-        if (btn.dataset.filter === "all") {
-          btn.classList.add("active");
+        if (
+          button.dataset.filter === "all"
+        ) {
+          button.classList.add("active");
         }
 
       });
@@ -594,35 +665,66 @@ clearSearch.addEventListener(
 );
 
 
-/* =========================================
+/* ==========================================
+   VIEW ALL
+   ========================================== */
+
+document
+  .getElementById("showAll")
+  .addEventListener(
+    "click",
+    () => {
+
+      activeFilter = "all";
+      searchTerm = "";
+      selectedLocation = "all";
+
+      searchInput.value = "";
+      locationFilter.value = "all";
+
+      document
+        .querySelectorAll(".filter")
+        .forEach(button => {
+
+          button.classList.remove("active");
+
+          if (
+            button.dataset.filter === "all"
+          ) {
+            button.classList.add("active");
+          }
+
+        });
+
+      renderBusinesses();
+
+    }
+  );
+
+
+/* ==========================================
    MOBILE MENU
-   ========================================= */
+   ========================================== */
 
-const menuBtn =
-  document.getElementById("menuBtn");
-
-const navMenu =
-  document.getElementById("navMenu");
-
-menuBtn.addEventListener(
+menuButton.addEventListener(
   "click",
-  function() {
+  () => {
 
-    navMenu.classList.toggle("show");
+    mobileNav.classList.toggle("show");
 
   }
 );
 
 
 document
-  .querySelectorAll(".nav a")
+  .querySelectorAll(".mobile-nav a")
   .forEach(link => {
 
     link.addEventListener(
       "click",
-      function() {
+      () => {
 
-        navMenu.classList.remove("show");
+        mobileNav.classList.remove("show");
 
       }
     );
@@ -630,73 +732,76 @@ document
   });
 
 
-/* =========================================
-   OWNER FORM SCROLL
-   ========================================= */
+/* ==========================================
+   HEADER SEARCH
+   ========================================== */
 
-const ownerBtn =
-  document.getElementById("ownerBtn");
+document
+  .getElementById("headerSearchBtn")
+  .addEventListener(
+    "click",
+    () => {
 
-ownerBtn.addEventListener(
-  "click",
-  function() {
+      document
+        .getElementById("home")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
 
-    document
-      .getElementById("listingForm")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
+      setTimeout(
+        () => searchInput.focus(),
+        500
+      );
 
-  }
-);
+    }
+  );
 
 
-/* =========================================
+/* ==========================================
    BUSINESS FORM
-   ========================================= */
+   ========================================== */
 
-const businessForm =
-  document.getElementById("businessForm");
+document
+  .getElementById("businessForm")
+  .addEventListener(
+    "submit",
+    event => {
 
-businessForm.addEventListener(
-  "submit",
-  function(event) {
+      event.preventDefault();
 
-    event.preventDefault();
+      const name =
+        document
+          .getElementById("businessName")
+          .value.trim();
 
-    const businessName =
-      document
-        .getElementById("ownerBusiness")
-        .value.trim();
+      const category =
+        document
+          .getElementById("businessCategory")
+          .value;
 
-    const category =
-      document
-        .getElementById("ownerCategory")
-        .value;
+      const city =
+        document
+          .getElementById("businessCity")
+          .value.trim();
 
-    const city =
-      document
-        .getElementById("ownerCity")
-        .value.trim();
+      const phone =
+        document
+          .getElementById("businessPhone")
+          .value.trim();
 
-    const phone =
-      document
-        .getElementById("ownerPhone")
-        .value.trim();
-
-    const description =
-      document
-        .getElementById("ownerDescription")
-        .value.trim();
+      const description =
+        document
+          .getElementById("businessDescription")
+          .value.trim();
 
 
-    const message =
+      const message =
 `Hello Zambia Business Hub 👋
 
 I would like to list my business.
 
-Business Name:
-${businessName}
+Business:
+${name}
 
 Category:
 ${category}
@@ -712,49 +817,29 @@ ${description}
 
 Please let me know the next steps.`;
 
-    openWhatsApp(message);
+      openHubWhatsApp(message);
 
-  }
-);
+    }
+  );
 
 
-/* =========================================
+/* ==========================================
    MODAL
-   ========================================= */
+   ========================================== */
 
-const modal =
-  document.getElementById("businessModal");
+function openModal(business) {
 
-const modalBody =
-  document.getElementById("modalBody");
+  modalContent.innerHTML = `
 
-const modalClose =
-  document.getElementById("modalClose");
-
-const modalOverlay =
-  document.getElementById("modalOverlay");
-
-
-function openBusinessModal(id) {
-
-  const business =
-    businesses.find(
-      item => item.id === id
-    );
-
-  if (!business) return;
-
-  modalBody.innerHTML = `
-
-    <div class="modal-business-icon">
+    <div class="modal-icon">
       ${business.icon}
     </div>
 
     <h2>${business.name}</h2>
 
-    <p class="business-category">
+    <div class="modal-category">
       ${business.category}
-    </p>
+    </div>
 
     <div class="modal-info">
 
@@ -766,31 +851,54 @@ function openBusinessModal(id) {
         📞 +${business.phone}
       </p>
 
-      <p style="margin-top:12px;">
+      <p>
+        🕐 ${business.hours}
+      </p>
+
+      <p style="margin-top:15px;">
         ${business.description}
       </p>
 
+      ${
+        !business.claimed
+          ? `
+            <p style="
+              margin-top:18px;
+              padding:12px;
+              background:#fff7df;
+              border-radius:9px;
+              color:#725900;
+              font-size:13px;
+            ">
+              ℹ️ This business has not yet claimed
+              this listing.
+            </p>
+          `
+          : ""
+      }
+
     </div>
 
-    <div class="modal-buttons">
+
+    <div class="modal-actions">
 
       <a
-        class="modal-call"
+        class="call"
         href="tel:+${business.phone}"
       >
         📞 Call
       </a>
 
       <button
-        class="modal-whatsapp"
-        onclick="businessWhatsApp(${business.id})"
+        class="whatsapp"
+        onclick="openBusinessWhatsApp(businesses.find(b => b.id === ${business.id}))"
       >
         💬 WhatsApp
       </button>
 
       <button
         class="modal-claim"
-        onclick="claimBusiness(${business.id})"
+        onclick="claimBusiness(businesses.find(b => b.id === ${business.id}))"
       >
         ✏️ Claim / Update this Business
       </button>
@@ -799,107 +907,33 @@ function openBusinessModal(id) {
 
   `;
 
-  modal.classList.add("show");
+  businessModal.classList.add("show");
 
 }
 
 
-function closeBusinessModal() {
+function closeModal() {
 
-  modal.classList.remove("show");
+  businessModal.classList.remove("show");
 
 }
 
 
 modalClose.addEventListener(
   "click",
-  closeBusinessModal
+  closeModal
 );
 
-modalOverlay.addEventListener(
+
+modalBackground.addEventListener(
   "click",
-  closeBusinessModal
+  closeModal
 );
 
 
-/* =========================================
-   MAKE CARD CLICKABLE
-   ========================================= */
-
-businessGrid.addEventListener(
-  "click",
-  function(event) {
-
-    const card =
-      event.target.closest(".business-card");
-
-    if (!card) return;
-
-    if (
-      event.target.closest("a") ||
-      event.target.closest("button")
-    ) {
-      return;
-    }
-
-    const cards =
-      Array.from(
-        businessGrid.children
-      );
-
-    const index =
-      cards.indexOf(card);
-
-    const visibleBusinesses =
-      businesses.filter(business => {
-
-        const matchesCategory =
-          currentFilter === "all" ||
-          business.category === currentFilter;
-
-        const matchesLocation =
-          currentLocation === "all" ||
-          business.location === currentLocation;
-
-        const searchText =
-          (
-            business.name +
-            " " +
-            business.category +
-            " " +
-            business.location +
-            " " +
-            business.description
-          ).toLowerCase();
-
-        const matchesSearch =
-          searchText.includes(
-            currentSearch.toLowerCase()
-          );
-
-        return (
-          matchesCategory &&
-          matchesLocation &&
-          matchesSearch
-        );
-
-      });
-
-    if (visibleBusinesses[index]) {
-
-      openBusinessModal(
-        visibleBusinesses[index].id
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
+/* ==========================================
    INITIALIZE
-   ========================================= */
+   ========================================== */
 
 businessCount.textContent =
   businesses.length + "+";
