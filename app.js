@@ -1,15 +1,21 @@
-/* =====================================================
-   ZAMBIA BUSINESS HUB V2
-   ===================================================== */
+/* =========================================
+   ZAMBIA BUSINESS HUB V2.1
+   ========================================= */
+
+/*
+   IMPORTANT:
+   Replace this number with YOUR WhatsApp number.
+
+   Example:
+   const HUB_WHATSAPP = "260971234567";
+*/
+
+const HUB_WHATSAPP = "260765054612";
 
 
-/* =====================================================
+/* =========================================
    BUSINESS DATA
-
-   These are DEMO businesses.
-   Replace them with real businesses and publicly
-   available contact details before publishing.
-   ===================================================== */
+   ========================================= */
 
 const businesses = [
 
@@ -18,11 +24,11 @@ const businesses = [
     name: "Lusaka Fresh Kitchen",
     category: "Restaurant",
     location: "Lusaka",
+    icon: "🍽️",
     description:
-      "Fresh meals, takeaway food and family dining.",
-    phone: "260970000001",
-    icon: "🍴",
-    featured: true
+      "Fresh meals, local dishes and convenient dining in Lusaka.",
+    phone: "260000000001",
+    unclaimed: true
   },
 
   {
@@ -30,210 +36,149 @@ const businesses = [
     name: "Golden Beauty Salon",
     category: "Beauty",
     location: "Lusaka",
-    description:
-      "Hair styling, beauty treatments and personal care.",
-    phone: "260970000002",
     icon: "💇",
-    featured: true
+    description:
+      "Hair, beauty and personal care services.",
+    phone: "260000000002",
+    unclaimed: true
   },
 
   {
     id: 3,
-    name: "Victoria Falls Lodge",
+    name: "Zambia Comfort Lodge",
     category: "Lodge",
     location: "Livingstone",
+    icon: "🏨",
     description:
       "Comfortable accommodation for visitors and travellers.",
-    phone: "260970000003",
-    icon: "🏨",
-    featured: true
+    phone: "260000000003",
+    unclaimed: true
   },
 
   {
     id: 4,
-    name: "Copperbelt Auto Services",
+    name: "Copperbelt Business Solutions",
     category: "Services",
     location: "Kitwe",
+    icon: "🛠️",
     description:
-      "Vehicle servicing, repairs and diagnostics.",
-    phone: "260970000004",
-    icon: "🚗",
-    featured: false
+      "Professional business support and digital services.",
+    phone: "260000000004",
+    unclaimed: true
   },
 
   {
     id: 5,
-    name: "Lusaka Digital Studio",
-    category: "Technology",
+    name: "Lusaka Style Boutique",
+    category: "Shopping",
     location: "Lusaka",
+    icon: "🛍️",
     description:
-      "Web design, branding and digital services.",
-    phone: "260970000005",
-    icon: "💻",
-    featured: true
+      "Fashion, clothing and lifestyle products.",
+    phone: "260000000005",
+    unclaimed: true
   },
 
   {
     id: 6,
-    name: "Ndola Grill House",
-    category: "Restaurant",
-    location: "Ndola",
+    name: "Focus Zambia Photography",
+    category: "Photography",
+    location: "Lusaka",
+    icon: "📸",
     description:
-      "Grilled food, drinks and family dining.",
-    phone: "260970000006",
-    icon: "🍔",
-    featured: false
+      "Photography services for events, portraits and businesses.",
+    phone: "260000000006",
+    unclaimed: true
   },
 
   {
     id: 7,
-    name: "Kabwe Hair Studio",
-    category: "Beauty",
-    location: "Kabwe",
+    name: "Ndola Transport Services",
+    category: "Transport",
+    location: "Ndola",
+    icon: "🚗",
     description:
-      "Professional hair styling and beauty services.",
-    phone: "260970000007",
-    icon: "💇‍♀️",
-    featured: false
+      "Local transport and travel services.",
+    phone: "260000000007",
+    unclaimed: true
   },
 
   {
     id: 8,
-    name: "Livingstone Tours",
-    category: "Tourism",
-    location: "Livingstone",
+    name: "Kabwe Food Corner",
+    category: "Restaurant",
+    location: "Kabwe",
+    icon: "🍔",
     description:
-      "Tours, travel activities and local experiences.",
-    phone: "260970000008",
-    icon: "🦁",
-    featured: true
+      "Affordable meals, snacks and refreshments.",
+    phone: "260000000008",
+    unclaimed: true
   },
 
   {
     id: 9,
-    name: "Kitwe Tech Solutions",
-    category: "Technology",
-    location: "Kitwe",
+    name: "Chingola Beauty Studio",
+    category: "Beauty",
+    location: "Chingola",
+    icon: "💅",
     description:
-      "Computer repairs, software and IT support.",
-    phone: "260970000009",
-    icon: "🖥️",
-    featured: false
+      "Beauty treatments, styling and personal care.",
+    phone: "260000000009",
+    unclaimed: true
   },
 
   {
     id: 10,
-    name: "Chipata Local Services",
-    category: "Services",
-    location: "Chipata",
+    name: "Livingstone Travel Lodge",
+    category: "Lodge",
+    location: "Livingstone",
+    icon: "🛏️",
     description:
-      "Local professional and household services.",
-    phone: "260970000010",
-    icon: "🛠️",
-    featured: false
+      "Accommodation and travel-friendly services.",
+    phone: "260000000010",
+    unclaimed: true
   },
 
   {
     id: 11,
-    name: "Kabwe Family Restaurant",
-    category: "Restaurant",
-    location: "Kabwe",
+    name: "Smart Digital Zambia",
+    category: "Services",
+    location: "Lusaka",
+    icon: "💻",
     description:
-      "Affordable meals for families and groups.",
-    phone: "260970000011",
-    icon: "🍽️",
-    featured: false
+      "Web design, digital solutions and business technology.",
+    phone: "260000000011",
+    unclaimed: true
   },
 
   {
     id: 12,
-    name: "Lusaka Business Lodge",
-    category: "Lodge",
-    location: "Lusaka",
-    description:
-      "Convenient accommodation for business and leisure.",
-    phone: "260970000012",
-    icon: "🏨",
-    featured: false
-  }
-
-];
-
-
-/* =====================================================
-   CATEGORY DATA
-   ===================================================== */
-
-const categories = [
-
-  {
-    name: "Restaurants",
-    category: "Restaurant",
-    icon: "🍴",
-    description: "Food & dining"
-  },
-
-  {
-    name: "Beauty",
-    category: "Beauty",
-    icon: "💇",
-    description: "Salons & beauty"
-  },
-
-  {
-    name: "Lodges",
-    category: "Lodge",
-    icon: "🏨",
-    description: "Hotels & accommodation"
-  },
-
-  {
-    name: "Services",
-    category: "Services",
-    icon: "🛠️",
-    description: "Local services"
-  },
-
-  {
-    name: "Technology",
-    category: "Technology",
-    icon: "💻",
-    description: "IT & digital"
-  },
-
-  {
-    name: "Tourism",
-    category: "Tourism",
-    icon: "🦁",
-    description: "Tours & travel"
-  },
-
-  {
-    name: "Shopping",
+    name: "Zambia Home Store",
     category: "Shopping",
-    icon: "🛍️",
-    description: "Shops & stores"
-  },
-
-  {
-    name: "Automotive",
-    category: "Automotive",
-    icon: "🚗",
-    description: "Cars & repairs"
+    location: "Lusaka",
+    icon: "🏪",
+    description:
+      "Home products, household items and everyday essentials.",
+    phone: "260000000012",
+    unclaimed: true
   }
 
 ];
 
 
-/* =====================================================
-   DOM ELEMENTS
-   ===================================================== */
+/* =========================================
+   VARIABLES
+   ========================================= */
+
+let currentFilter = "all";
+let currentSearch = "";
+let currentLocation = "all";
 
 const businessGrid =
   document.getElementById("businessGrid");
 
-const categoryGrid =
-  document.getElementById("categoryGrid");
+const emptyState =
+  document.getElementById("emptyState");
 
 const searchInput =
   document.getElementById("searchInput");
@@ -244,20 +189,414 @@ const searchBtn =
 const locationFilter =
   document.getElementById("locationFilter");
 
-const emptyState =
-  document.getElementById("emptyState");
-
-const resultsText =
-  document.getElementById("resultsText");
+const clearSearch =
+  document.getElementById("clearSearch");
 
 const businessCount =
   document.getElementById("businessCount");
 
-const categoryCount =
-  document.getElementById("categoryCount");
 
-const locationCount =
-  document.getElementById("locationCount");
+/* =========================================
+   WHATSAPP
+   ========================================= */
+
+function openWhatsApp(message) {
+
+  if (
+    !HUB_WHATSAPP ||
+    HUB_WHATSAPP === "260000000000"
+  ) {
+    alert(
+      "Please add your Zambia Business Hub WhatsApp number in app.js first."
+    );
+
+    return;
+  }
+
+  const url =
+    "https://wa.me/" +
+    HUB_WHATSAPP +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+
+
+/* =========================================
+   BUSINESS WHATSAPP
+   ========================================= */
+
+function businessWhatsApp(business) {
+
+  const message =
+    `Hello ${business.name}, I found your business on Zambia Business Hub.`;
+
+  if (!business.phone) {
+    openWhatsApp(
+      `Hello Zambia Business Hub. I am interested in ${business.name}.`
+    );
+
+    return;
+  }
+
+  const url =
+    "https://wa.me/" +
+    business.phone +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+
+
+/* =========================================
+   CLAIM BUSINESS
+   ========================================= */
+
+function claimBusiness(business) {
+
+  const message =
+`Hello Zambia Business Hub 👋
+
+I would like to claim/update the business listing for:
+
+Business: ${business.name}
+Category: ${business.category}
+Location: ${business.location}
+
+Please let me know what information you need from me.
+
+Thank you.`;
+
+  openWhatsApp(message);
+}
+
+
+/* =========================================
+   CREATE BUSINESS CARD
+   ========================================= */
+
+function createBusinessCard(business) {
+
+  const card =
+    document.createElement("article");
+
+  card.className = "business-card";
+
+  card.innerHTML = `
+
+    <div class="business-top">
+
+      <div class="business-icon">
+        ${business.icon}
+      </div>
+
+      ${
+        business.unclaimed
+          ? `<span class="unclaimed">UNCLAIMED</span>`
+          : `<span class="unclaimed">LISTED</span>`
+      }
+
+    </div>
+
+    <h3>${business.name}</h3>
+
+    <span class="business-category">
+      ${business.category}
+    </span>
+
+    <div class="business-location">
+      📍 ${business.location}, Zambia
+    </div>
+
+    <p class="business-description">
+      ${business.description}
+    </p>
+
+    <div class="business-actions">
+
+      <a
+        class="call-btn"
+        href="tel:+${business.phone}"
+      >
+        📞 Call
+      </a>
+
+      <button
+        class="whatsapp-btn"
+        onclick="businessWhatsApp(${business.id})"
+      >
+        💬 WhatsApp
+      </button>
+
+    </div>
+
+    <button
+      class="claim-btn"
+      onclick="claimBusiness(${business.id})"
+    >
+      ✏️ Claim / Update this business
+    </button>
+
+  `;
+
+  businessGrid.appendChild(card);
+}
+
+
+/* =========================================
+   RENDER BUSINESSES
+   ========================================= */
+
+function renderBusinesses() {
+
+  businessGrid.innerHTML = "";
+
+  const filtered =
+    businesses.filter(business => {
+
+      const matchesCategory =
+        currentFilter === "all" ||
+        business.category === currentFilter;
+
+      const matchesLocation =
+        currentLocation === "all" ||
+        business.location === currentLocation;
+
+      const searchText =
+        (
+          business.name +
+          " " +
+          business.category +
+          " " +
+          business.location +
+          " " +
+          business.description
+        ).toLowerCase();
+
+      const matchesSearch =
+        searchText.includes(
+          currentSearch.toLowerCase()
+        );
+
+      return (
+        matchesCategory &&
+        matchesLocation &&
+        matchesSearch
+      );
+
+    });
+
+
+  filtered.forEach(business => {
+
+    createBusinessCard(business);
+
+  });
+
+
+  if (filtered.length === 0) {
+
+    emptyState.classList.add("show");
+
+  } else {
+
+    emptyState.classList.remove("show");
+
+  }
+
+}
+
+
+/* =========================================
+   SEARCH
+   ========================================= */
+
+function performSearch() {
+
+  currentSearch =
+    searchInput.value.trim();
+
+  currentLocation =
+    locationFilter.value;
+
+  currentFilter = "all";
+
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+      if (btn.dataset.filter === "all") {
+        btn.classList.add("active");
+      }
+
+    });
+
+  renderBusinesses();
+
+  document
+    .getElementById("businesses")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================
+   SEARCH EVENTS
+   ========================================= */
+
+searchBtn.addEventListener(
+  "click",
+  performSearch
+);
+
+
+searchInput.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Enter") {
+      performSearch();
+    }
+
+  }
+);
+
+
+locationFilter.addEventListener(
+  "change",
+  function() {
+
+    currentLocation =
+      locationFilter.value;
+
+    renderBusinesses();
+
+  }
+);
+
+
+/* =========================================
+   FILTER BUTTONS
+   ========================================= */
+
+document
+  .querySelectorAll(".filter-btn")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach(btn =>
+            btn.classList.remove("active")
+          );
+
+        this.classList.add("active");
+
+        currentFilter =
+          this.dataset.filter;
+
+        renderBusinesses();
+
+      }
+    );
+
+  });
+
+
+/* =========================================
+   CATEGORY BUTTONS
+   ========================================= */
+
+document
+  .querySelectorAll(
+    ".category-card, .quick-category"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        currentFilter =
+          this.dataset.category;
+
+        currentSearch = "";
+
+        searchInput.value = "";
+
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach(btn => {
+
+            btn.classList.remove("active");
+
+            if (
+              btn.dataset.filter === currentFilter
+            ) {
+              btn.classList.add("active");
+            }
+
+          });
+
+        renderBusinesses();
+
+        document
+          .getElementById("businesses")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
+
+      }
+    );
+
+  });
+
+
+/* =========================================
+   CLEAR SEARCH
+   ========================================= */
+
+clearSearch.addEventListener(
+  "click",
+  function() {
+
+    currentSearch = "";
+    currentFilter = "all";
+    currentLocation = "all";
+
+    searchInput.value = "";
+    locationFilter.value = "all";
+
+    document
+      .querySelectorAll(".filter-btn")
+      .forEach(btn => {
+
+        btn.classList.remove("active");
+
+        if (btn.dataset.filter === "all") {
+          btn.classList.add("active");
+        }
+
+      });
+
+    renderBusinesses();
+
+  }
+);
+
+
+/* =========================================
+   MOBILE MENU
+   ========================================= */
 
 const menuBtn =
   document.getElementById("menuBtn");
@@ -265,8 +604,123 @@ const menuBtn =
 const navMenu =
   document.getElementById("navMenu");
 
-const year =
-  document.getElementById("year");
+menuBtn.addEventListener(
+  "click",
+  function() {
+
+    navMenu.classList.toggle("show");
+
+  }
+);
+
+
+document
+  .querySelectorAll(".nav a")
+  .forEach(link => {
+
+    link.addEventListener(
+      "click",
+      function() {
+
+        navMenu.classList.remove("show");
+
+      }
+    );
+
+  });
+
+
+/* =========================================
+   OWNER FORM SCROLL
+   ========================================= */
+
+const ownerBtn =
+  document.getElementById("ownerBtn");
+
+ownerBtn.addEventListener(
+  "click",
+  function() {
+
+    document
+      .getElementById("listingForm")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+);
+
+
+/* =========================================
+   BUSINESS FORM
+   ========================================= */
+
+const businessForm =
+  document.getElementById("businessForm");
+
+businessForm.addEventListener(
+  "submit",
+  function(event) {
+
+    event.preventDefault();
+
+    const businessName =
+      document
+        .getElementById("ownerBusiness")
+        .value.trim();
+
+    const category =
+      document
+        .getElementById("ownerCategory")
+        .value;
+
+    const city =
+      document
+        .getElementById("ownerCity")
+        .value.trim();
+
+    const phone =
+      document
+        .getElementById("ownerPhone")
+        .value.trim();
+
+    const description =
+      document
+        .getElementById("ownerDescription")
+        .value.trim();
+
+
+    const message =
+`Hello Zambia Business Hub 👋
+
+I would like to list my business.
+
+Business Name:
+${businessName}
+
+Category:
+${category}
+
+City/Town:
+${city}
+
+Phone/WhatsApp:
+${phone}
+
+Description:
+${description}
+
+Please let me know the next steps.`;
+
+    openWhatsApp(message);
+
+  }
+);
+
+
+/* =========================================
+   MODAL
+   ========================================= */
 
 const modal =
   document.getElementById("businessModal");
@@ -281,478 +735,14 @@ const modalOverlay =
   document.getElementById("modalOverlay");
 
 
-/* =====================================================
-   CURRENT FILTER
-   ===================================================== */
+function openBusinessModal(id) {
 
-let currentCategory = "All";
-
-
-/* =====================================================
-   STATS
-   ===================================================== */
-
-const uniqueLocations =
-  [...new Set(
-    businesses.map(
-      business => business.location
-    )
-  )];
-
-businessCount.textContent =
-  businesses.length;
-
-categoryCount.textContent =
-  categories.length;
-
-locationCount.textContent =
-  uniqueLocations.length;
-
-year.textContent =
-  new Date().getFullYear();
-
-
-/* =====================================================
-   RENDER CATEGORIES
-   ===================================================== */
-
-function renderCategories() {
-
-  categoryGrid.innerHTML = "";
-
-  categories.forEach(category => {
-
-    const card =
-      document.createElement("button");
-
-    card.className =
-      "category-card";
-
-    card.type = "button";
-
-    card.innerHTML = `
-
-      <div class="category-icon">
-        ${category.icon}
-      </div>
-
-      <h3>
-        ${category.name}
-      </h3>
-
-      <p>
-        ${category.description}
-      </p>
-
-    `;
-
-    card.addEventListener(
-      "click",
-      () => {
-
-        currentCategory =
-          category.category;
-
-        updateFilterButtons();
-
-        renderBusinesses();
-
-        document
-          .getElementById("businesses")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-      }
+  const business =
+    businesses.find(
+      item => item.id === id
     );
 
-    categoryGrid.appendChild(card);
-
-  });
-
-}
-
-
-/* =====================================================
-   CREATE BUSINESS CARD
-   ===================================================== */
-
-function createBusinessCard(business) {
-
-  const card =
-    document.createElement("article");
-
-  card.className =
-    "business-card";
-
-  const message =
-    encodeURIComponent(
-      `Hello ${business.name}, I found your business on Zambia Business Hub.`
-    );
-
-  card.innerHTML = `
-
-    <div class="business-cover">
-
-      ${
-        business.featured
-          ? `<span class="featured-tag">⭐ Featured</span>`
-          : ""
-      }
-
-      <div class="business-icon">
-        ${business.icon}
-      </div>
-
-    </div>
-
-    <div class="business-info">
-
-      <span class="business-category">
-        ${business.category}
-      </span>
-
-      <h3>
-        ${business.name}
-      </h3>
-
-      <div class="business-location">
-        📍 ${business.location}
-      </div>
-
-      <p class="business-description">
-        ${business.description}
-      </p>
-
-      <div class="business-actions">
-
-        <button
-          class="details-btn"
-          data-id="${business.id}"
-        >
-          View
-        </button>
-
-        <a
-          class="call-btn"
-          href="tel:+${business.phone}"
-        >
-          📞 Call
-        </a>
-
-        <a
-          class="whatsapp-btn"
-          href="https://wa.me/${business.phone}?text=${message}"
-          target="_blank"
-          rel="noopener"
-        >
-          💬
-        </a>
-
-      </div>
-
-    </div>
-
-  `;
-
-  const detailsButton =
-    card.querySelector(".details-btn");
-
-  detailsButton.addEventListener(
-    "click",
-    () => openBusinessModal(business)
-  );
-
-  return card;
-
-}
-
-
-/* =====================================================
-   FILTER + SEARCH
-   ===================================================== */
-
-function getFilteredBusinesses() {
-
-  const query =
-    searchInput.value
-      .trim()
-      .toLowerCase();
-
-  const selectedLocation =
-    locationFilter.value;
-
-
-  return businesses.filter(
-    business => {
-
-      const matchesCategory =
-        currentCategory === "All" ||
-        business.category === currentCategory;
-
-
-      const matchesLocation =
-        selectedLocation === "All" ||
-        business.location === selectedLocation;
-
-
-      const searchableText = `
-
-        ${business.name}
-        ${business.category}
-        ${business.location}
-        ${business.description}
-
-      `.toLowerCase();
-
-
-      const matchesSearch =
-        !query ||
-        searchableText.includes(query);
-
-
-      return (
-        matchesCategory &&
-        matchesLocation &&
-        matchesSearch
-      );
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   RENDER BUSINESSES
-   ===================================================== */
-
-function renderBusinesses() {
-
-  const results =
-    getFilteredBusinesses();
-
-  businessGrid.innerHTML = "";
-
-
-  if (results.length === 0) {
-
-    emptyState.style.display =
-      "block";
-
-    resultsText.textContent =
-      "No matching businesses found.";
-
-    return;
-
-  }
-
-
-  emptyState.style.display =
-    "none";
-
-
-  resultsText.textContent =
-    `${results.length} business${
-      results.length === 1 ? "" : "es"
-    } found`;
-
-
-  results.forEach(
-    business => {
-
-      businessGrid.appendChild(
-        createBusinessCard(business)
-      );
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   UPDATE CATEGORY BUTTONS
-   ===================================================== */
-
-function updateFilterButtons() {
-
-  document
-    .querySelectorAll(".filter")
-    .forEach(button => {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.filter === currentCategory
-      );
-
-    });
-
-}
-
-
-/* =====================================================
-   FILTER BUTTONS
-   ===================================================== */
-
-document
-  .querySelectorAll(".filter")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        currentCategory =
-          button.dataset.filter;
-
-        updateFilterButtons();
-
-        renderBusinesses();
-
-      }
-    );
-
-  });
-
-
-/* =====================================================
-   SEARCH
-   ===================================================== */
-
-function performSearch() {
-
-  renderBusinesses();
-
-}
-
-
-searchBtn.addEventListener(
-  "click",
-  performSearch
-);
-
-
-searchInput.addEventListener(
-  "input",
-  performSearch
-);
-
-
-searchInput.addEventListener(
-  "keydown",
-  event => {
-
-    if (event.key === "Enter") {
-
-      performSearch();
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   LOCATION
-   ===================================================== */
-
-locationFilter.addEventListener(
-  "change",
-  renderBusinesses
-);
-
-
-/* =====================================================
-   QUICK CATEGORY BUTTONS
-   ===================================================== */
-
-document
-  .querySelectorAll(".quick-links button")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        currentCategory =
-          button.dataset.category;
-
-        updateFilterButtons();
-
-        renderBusinesses();
-
-        document
-          .getElementById("businesses")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-      }
-    );
-
-  });
-
-
-/* =====================================================
-   VIEW ALL
-   ===================================================== */
-
-document
-  .getElementById("showAllBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      currentCategory = "All";
-
-      searchInput.value = "";
-
-      locationFilter.value = "All";
-
-      updateFilterButtons();
-
-      renderBusinesses();
-
-    }
-  );
-
-
-/* =====================================================
-   RESET
-   ===================================================== */
-
-document
-  .getElementById("resetBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      currentCategory = "All";
-
-      searchInput.value = "";
-
-      locationFilter.value = "All";
-
-      updateFilterButtons();
-
-      renderBusinesses();
-
-    }
-  );
-
-
-/* =====================================================
-   BUSINESS MODAL
-   ===================================================== */
-
-function openBusinessModal(business) {
-
-  const message =
-    encodeURIComponent(
-      `Hello ${business.name}, I found your business on Zambia Business Hub.`
-    );
-
+  if (!business) return;
 
   modalBody.innerHTML = `
 
@@ -760,31 +750,27 @@ function openBusinessModal(business) {
       ${business.icon}
     </div>
 
-    <span class="business-category">
+    <h2>${business.name}</h2>
+
+    <p class="business-category">
       ${business.category}
-    </span>
-
-    <h2>
-      ${business.name}
-    </h2>
-
-    <div class="modal-meta">
-      📍 ${business.location}
-    </div>
-
-    <p class="modal-description">
-      ${business.description}
     </p>
 
-    ${
-      business.featured
-        ? `
-          <p>
-            ⭐ This is a featured listing.
-          </p>
-        `
-        : ""
-    }
+    <div class="modal-info">
+
+      <p>
+        📍 ${business.location}, Zambia
+      </p>
+
+      <p>
+        📞 +${business.phone}
+      </p>
+
+      <p style="margin-top:12px;">
+        ${business.description}
+      </p>
+
+    </div>
 
     <div class="modal-buttons">
 
@@ -792,219 +778,130 @@ function openBusinessModal(business) {
         class="modal-call"
         href="tel:+${business.phone}"
       >
-        📞 Call Business
+        📞 Call
       </a>
 
-      <a
+      <button
         class="modal-whatsapp"
-        href="https://wa.me/${business.phone}?text=${message}"
-        target="_blank"
-        rel="noopener"
+        onclick="businessWhatsApp(${business.id})"
       >
         💬 WhatsApp
-      </a>
+      </button>
+
+      <button
+        class="modal-claim"
+        onclick="claimBusiness(${business.id})"
+      >
+        ✏️ Claim / Update this Business
+      </button>
 
     </div>
 
   `;
 
-
   modal.classList.add("show");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-  document.body.style.overflow =
-    "hidden";
 
 }
 
 
-/* =====================================================
-   CLOSE MODAL
-   ===================================================== */
-
-function closeModal() {
+function closeBusinessModal() {
 
   modal.classList.remove("show");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-  document.body.style.overflow =
-    "";
 
 }
 
 
 modalClose.addEventListener(
   "click",
-  closeModal
+  closeBusinessModal
 );
-
 
 modalOverlay.addEventListener(
   "click",
-  closeModal
+  closeBusinessModal
 );
 
 
-document.addEventListener(
-  "keydown",
-  event => {
+/* =========================================
+   MAKE CARD CLICKABLE
+   ========================================= */
+
+businessGrid.addEventListener(
+  "click",
+  function(event) {
+
+    const card =
+      event.target.closest(".business-card");
+
+    if (!card) return;
 
     if (
-      event.key === "Escape" &&
-      modal.classList.contains("show")
+      event.target.closest("a") ||
+      event.target.closest("button")
     ) {
-
-      closeModal();
-
+      return;
     }
 
-  }
-);
+    const cards =
+      Array.from(
+        businessGrid.children
+      );
 
+    const index =
+      cards.indexOf(card);
 
-/* =====================================================
-   MOBILE MENU
-   ===================================================== */
+    const visibleBusinesses =
+      businesses.filter(business => {
 
-menuBtn.addEventListener(
-  "click",
-  () => {
+        const matchesCategory =
+          currentFilter === "all" ||
+          business.category === currentFilter;
 
-    navMenu.classList.toggle("open");
+        const matchesLocation =
+          currentLocation === "all" ||
+          business.location === currentLocation;
 
-  }
-);
+        const searchText =
+          (
+            business.name +
+            " " +
+            business.category +
+            " " +
+            business.location +
+            " " +
+            business.description
+          ).toLowerCase();
 
+        const matchesSearch =
+          searchText.includes(
+            currentSearch.toLowerCase()
+          );
 
-document
-  .querySelectorAll("#navMenu a")
-  .forEach(link => {
+        return (
+          matchesCategory &&
+          matchesLocation &&
+          matchesSearch
+        );
 
-    link.addEventListener(
-      "click",
-      () => {
+      });
 
-        navMenu.classList.remove("open");
+    if (visibleBusinesses[index]) {
 
-      }
-    );
-
-  });
-
-
-/* =====================================================
-   LIST YOUR BUSINESS FORM
-   ===================================================== */
-
-/*
-   IMPORTANT:
-   Replace this number with YOUR actual Zambia
-   Business Hub WhatsApp number.
-
-   Format:
-   260XXXXXXXXX
-
-   Do not put +, spaces or brackets.
-*/
-
-const HUB_WHATSAPP =
-  "260000000000";
-
-
-document
-  .getElementById("listingForm")
-  .addEventListener(
-    "submit",
-    event => {
-
-      event.preventDefault();
-
-
-      const businessName =
-        document
-          .getElementById("ownerBusiness")
-          .value
-          .trim();
-
-
-      const category =
-        document
-          .getElementById("ownerCategory")
-          .value;
-
-
-      const city =
-        document
-          .getElementById("ownerCity")
-          .value
-          .trim();
-
-
-      const phone =
-        document
-          .getElementById("ownerPhone")
-          .value
-          .trim();
-
-
-      const description =
-        document
-          .getElementById("ownerDescription")
-          .value
-          .trim();
-
-
-      const message = encodeURIComponent(`
-
-Hello Zambia Business Hub!
-
-I would like to list my business.
-
-Business Name:
-${businessName}
-
-Category:
-${category}
-
-City:
-${city}
-
-Phone / WhatsApp:
-${phone}
-
-Description:
-${description}
-
-Please let me know the next steps.
-
-      `);
-
-
-      const whatsappURL =
-        `https://wa.me/${HUB_WHATSAPP}?text=${message}`;
-
-
-      window.open(
-        whatsappURL,
-        "_blank"
+      openBusinessModal(
+        visibleBusinesses[index].id
       );
 
     }
-  );
+
+  }
+);
 
 
-/* =====================================================
-   START WEBSITE
-   ===================================================== */
+/* =========================================
+   INITIALIZE
+   ========================================= */
 
-renderCategories();
+businessCount.textContent =
+  businesses.length + "+";
 
 renderBusinesses();
