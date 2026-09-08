@@ -288,11 +288,95 @@ document.addEventListener("DOMContentLoaded", () => {
     businesses.length + "+"
   );
 
+  populateLocationFilter();
   renderFeatured();
   renderBusinesses(businesses);
   setupEventListeners();
+  setupModalListeners();
 
 });
+
+
+/* =========================================================
+   SAFE TEXT HELPER
+   ========================================================= */
+
+function setText(id, value) {
+
+  const element =
+    document.getElementById(id);
+
+  if (element) {
+    element.textContent = value;
+  }
+
+}
+
+
+/* =========================================================
+   SAFE HTML ESCAPE
+   ========================================================= */
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   POPULATE LOCATION FILTER
+   ========================================================= */
+
+function populateLocationFilter() {
+
+  const filter =
+    document.getElementById("locationFilter");
+
+  if (!filter) return;
+
+  const currentValue =
+    filter.value || "all";
+
+  const locations =
+    [...new Set(
+      businesses.map(
+        business => business.location
+      )
+    )].sort();
+
+  filter.innerHTML =
+    `<option value="all">All Locations</option>`;
+
+  locations.forEach(location => {
+
+    const option =
+      document.createElement("option");
+
+    option.value =
+      location.toLowerCase();
+
+    option.textContent =
+      location;
+
+    filter.appendChild(option);
+
+  });
+
+  filter.value =
+    locations.some(
+      location =>
+        location.toLowerCase() === currentValue
+    )
+      ? currentValue
+      : "all";
+
+}
 
 
 /* =========================================================
@@ -305,31 +389,40 @@ function setupEventListeners() {
     document.getElementById("listingForm");
 
   if (listingForm) {
+
     listingForm.addEventListener(
       "submit",
       handleListingSubmit
     );
+
   }
+
 
   const searchInput =
     document.getElementById("searchInput");
 
   if (searchInput) {
+
     searchInput.addEventListener(
       "input",
       filterBusinesses
     );
+
   }
+
 
   const locationFilter =
     document.getElementById("locationFilter");
 
   if (locationFilter) {
+
     locationFilter.addEventListener(
       "change",
       filterBusinesses
     );
+
   }
+
 
   document
     .querySelectorAll("#mainNav a")
@@ -347,6 +440,40 @@ function setupEventListeners() {
       });
 
     });
+
+}
+
+
+/* =========================================================
+   MODAL LISTENERS
+   ========================================================= */
+
+function setupModalListeners() {
+
+  const modal =
+    document.getElementById("businessModal");
+
+  if (!modal) return;
+
+  modal.addEventListener("click", event => {
+
+    if (event.target === modal) {
+      closeModal();
+    }
+
+  });
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Escape") {
+        closeModal();
+      }
+
+    }
+  );
 
 }
 
@@ -376,7 +503,8 @@ function renderFeatured() {
       const card =
         document.createElement("div");
 
-      card.className = "featured-card";
+      card.className =
+        "featured-card";
 
       card.innerHTML = `
 
@@ -410,7 +538,7 @@ function renderFeatured() {
 
           <a
             class="card-btn primary"
-            href="https://wa.me/${business.phone}"
+            href="https://wa.me/${escapeHTML(business.phone)}"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -459,33 +587,41 @@ function renderBusinesses(list) {
     }
 
     return;
+
   }
+
 
   if (noResults) {
     noResults.style.display = "none";
   }
+
 
   list.forEach(business => {
 
     const card =
       document.createElement("article");
 
-    card.className = "business-card";
+    card.className =
+      "business-card";
+
 
     const status =
       business.verified
         ? `<div class="status-badge verified">✓ Verified</div>`
         : `<div class="status-badge unclaimed">Unclaimed</div>`;
 
+
     const featured =
       business.featured
         ? `<div class="featured-mini">⭐ Featured</div>`
         : "";
 
+
     const favorite =
       isFavorite(business.id)
         ? "❤️"
         : "♡";
+
 
     card.innerHTML = `
 
@@ -500,6 +636,7 @@ function renderBusinesses(list) {
         ${featured}
 
       </div>
+
 
       <div class="card-body">
 
@@ -531,6 +668,7 @@ function renderBusinesses(list) {
           🕒 ${escapeHTML(business.hours)}
         </div>
 
+
         <div class="card-actions">
 
           <button
@@ -542,7 +680,7 @@ function renderBusinesses(list) {
 
           <a
             class="card-btn primary"
-            href="https://wa.me/${business.phone}"
+            href="https://wa.me/${escapeHTML(business.phone)}"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -568,6 +706,7 @@ function renderBusinesses(list) {
 
   });
 
+
   if (resultsText) {
 
     resultsText.textContent =
@@ -592,35 +731,43 @@ function filterBusinesses() {
   const locationFilter =
     document.getElementById("locationFilter");
 
+
   const search =
     searchInput
       ? searchInput.value.toLowerCase().trim()
       : "";
+
 
   const location =
     locationFilter
       ? locationFilter.value.toLowerCase()
       : "all";
 
+
   const filtered =
     businesses.filter(business => {
 
       const text = `
+
         ${business.name}
         ${business.category}
         ${business.location}
         ${business.province}
         ${business.address}
         ${business.description}
+
       `.toLowerCase();
+
 
       const matchesSearch =
         !search ||
         text.includes(search);
 
+
       const matchesLocation =
         location === "all" ||
         business.location.toLowerCase() === location;
+
 
       return (
         matchesSearch &&
@@ -628,6 +775,7 @@ function filterBusinesses() {
       );
 
     });
+
 
   renderBusinesses(filtered);
 
@@ -646,18 +794,23 @@ function quickCategory(category) {
   const locationFilter =
     document.getElementById("locationFilter");
 
+
   if (searchInput) {
     searchInput.value = category;
   }
+
 
   if (locationFilter) {
     locationFilter.value = "all";
   }
 
+
   filterBusinesses();
+
 
   const businessesSection =
     document.getElementById("businesses");
+
 
   if (businessesSection) {
 
@@ -682,13 +835,16 @@ function clearFilters() {
   const locationFilter =
     document.getElementById("locationFilter");
 
+
   if (searchInput) {
     searchInput.value = "";
   }
 
+
   if (locationFilter) {
     locationFilter.value = "all";
   }
+
 
   renderBusinesses(businesses);
 
@@ -706,9 +862,14 @@ function openBusiness(id) {
       item => item.id === id
     );
 
+
   if (!business) return;
 
-  addRecentlyViewed(business.id);
+
+  addRecentlyViewed(
+    business.id
+  );
+
 
   const modal =
     document.getElementById("businessModal");
@@ -716,27 +877,33 @@ function openBusiness(id) {
   const body =
     document.getElementById("modalBody");
 
+
   if (!modal || !body) return;
+
 
   const whatsappMessage =
     encodeURIComponent(
       `Hello, I found ${business.name} on Zambia Business Hub. I would like more information.`
     );
 
+
   const claimMessage =
     encodeURIComponent(
       `Hello Zambia Business Hub. I am the owner or representative of ${business.name} and would like to claim/update this listing.`
     );
+
 
   const verificationStatus =
     business.verified
       ? "🟢 Verified business"
       : "🟡 Unclaimed — owner verification pending";
 
+
   const favorite =
     isFavorite(business.id)
       ? "❤️ Remove from Favorites"
       : "♡ Save to Favorites";
+
 
   body.innerHTML = `
 
@@ -744,72 +911,87 @@ function openBusiness(id) {
       ${escapeHTML(business.icon)}
     </div>
 
+
     <div class="modal-label">
       ${escapeHTML(business.category)}
     </div>
+
 
     <h2 class="modal-title">
       ${escapeHTML(business.name)}
     </h2>
 
+
     <div class="modal-label">
       Listing Status
     </div>
+
 
     <div class="modal-value">
       ${verificationStatus}
     </div>
 
+
     <div class="modal-label">
       Location
     </div>
+
 
     <div class="modal-value">
       ${escapeHTML(business.address)}
     </div>
 
+
     <div class="modal-label">
       Public Rating
     </div>
+
 
     <div class="modal-value">
       ⭐ ${escapeHTML(business.rating)}
       (${escapeHTML(business.reviews)} public reviews)
     </div>
 
+
     <div class="modal-label">
       Opening Hours
     </div>
+
 
     <div class="modal-value">
       ${escapeHTML(business.hours)}
     </div>
 
+
     <div class="modal-label">
       About
     </div>
+
 
     <div class="modal-value">
       ${escapeHTML(business.description)}
     </div>
 
+
     <div class="modal-actions">
 
       <a
         class="card-btn primary"
-        href="tel:+${business.phone}"
+        href="tel:+${escapeHTML(business.phone)}"
       >
         📞 Call
       </a>
 
+
       <a
         class="card-btn primary"
-        href="https://wa.me/${business.phone}?text=${whatsappMessage}"
+        href="https://wa.me/${escapeHTML(business.phone)}?text=${whatsappMessage}"
         target="_blank"
         rel="noopener noreferrer"
       >
         💬 WhatsApp
       </a>
+
 
       <a
         class="card-btn"
@@ -820,12 +1002,14 @@ function openBusiness(id) {
         📍 Directions
       </a>
 
+
       <button
         class="card-btn"
         onclick="toggleFavorite(${business.id})"
       >
         ${favorite}
       </button>
+
 
       <a
         class="card-btn"
@@ -840,136 +1024,8 @@ function openBusiness(id) {
 
   `;
 
+
   modal.classList.add("active");
 
-  document.body.style.overflow = "hidden";
-
-}
-
-
-/* =========================================================
-   CLOSE MODAL
-   ========================================================= */
-
-function closeModal() {
-
-  const modal =
-    document.getElementById("businessModal");
-
-  if (modal) {
-    modal.classList.remove("active");
-  }
-
-  document.body.style.overflow = "";
-
-}
-
-
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
-
-function toggleMenu() {
-
-  const nav =
-    document.getElementById("mainNav");
-
-  if (nav) {
-    nav.classList.toggle("active");
-  }
-
-}
-
-
-/* =========================================================
-   FAVORITES
-   ========================================================= */
-
-function isFavorite(id) {
-
-  return favorites.includes(id);
-
-}
-
-
-function toggleFavorite(id) {
-
-  if (isFavorite(id)) {
-
-    favorites =
-      favorites.filter(
-        favoriteId => favoriteId !== id
-      );
-
-  } else {
-
-    favorites.push(id);
-
-  }
-
-  localStorage.setItem(
-    "zbhFavorites",
-    JSON.stringify(favorites)
-  );
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  if (searchInput && searchInput.value.trim()) {
-    filterBusinesses();
-  } else {
-    renderBusinesses(businesses);
-  }
-
-  const business =
-    businesses.find(
-      item => item.id === id
-    );
-
-  if (business) {
-    openBusiness(id);
-  }
-
-}
-
-
-/* =========================================================
-   RECENTLY VIEWED
-   ========================================================= */
-
-function addRecentlyViewed(id) {
-
-  recentlyViewed =
-    recentlyViewed.filter(
-      item => item !== id
-    );
-
-  recentlyViewed.unshift(id);
-
-  recentlyViewed =
-    recentlyViewed.slice(0, 5);
-
-  localStorage.setItem(
-    "zbhRecentlyViewed",
-    JSON.stringify(recentlyViewed)
-  );
-
-}
-
-
-/* =========================================================
-   LIST BUSINESS FORM
-   ========================================================= */
-
-function handleListingSubmit(event) {
-
-  event.preventDefault();
-
-  const businessName =
-    document.getElementById("ownerBusiness")?.value.trim();
-
-  const category =
-    document.getElementById("ownerCategory")?.value.trim();
-
-  const location =
-    doc
+  document.body.style.overflow =
+  
