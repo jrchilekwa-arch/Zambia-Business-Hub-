@@ -7,8 +7,7 @@
   <title>Zambia Business Hub 🇿🇲 | Find. Connect. Grow.</title>
 
   <meta name="description"
-    content="Discover businesses, restaurants, lodges, salons and professional services across Zambia.">
-
+    content="Discover businesses, restaurants, lodges, beauty services and business services across Zambia.">
   <meta name="theme-color" content="#087f3f">
 
   <link rel="stylesheet" href="style.css">
@@ -16,489 +15,447 @@
 
 <body>
 
-<header class="site-header">
-  <div class="container nav-container">
-
-    <a href="#home" class="brand">
-      <div class="brand-flag">🇿🇲</div>
-      <div>
-        <strong>Zambia Business Hub</strong>
-        <span>Find. Connect. Grow.</span>
-      </div>
-    </a>
-
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-    <nav id="mainNav">
-      <a href="#home">Home</a>
-      <a href="#businesses">Businesses</a>
-      <a href="#categories">Categories</a>
-      <a href="#about">About</a>
-      <a href="#list-business" class="nav-cta">List Your Business</a>
-    </nav>
-
-  </div>
-</header>
-
-
-<!-- HERO -->
-
-<section id="home" class="hero">
-
-  <div class="container hero-content">
-
-    <div class="hero-badge">
-      🇿🇲 ZAMBIA'S BUSINESS DIRECTORY
-    </div>
-
-    <h1>
-      Find businesses.<br>
-      <span>Grow together.</span>
-    </h1>
-
-    <p>
-      Discover restaurants, lodges, salons, professionals
-      and services across Zambia.
-    </p>
-
-    <div class="search-panel">
-
-      <div class="search-box">
-        <span>🔎</span>
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search business or service..."
-          oninput="filterBusinesses()"
-        >
-      </div>
-
-      <div class="location-box">
-        <span>📍</span>
-
-        <select id="locationFilter" onchange="filterBusinesses()">
-          <option value="all">All Zambia</option>
-          <option value="lusaka">Lusaka</option>
-          <option value="chingola">Chingola</option>
-        </select>
-      </div>
-
-      <button class="search-btn" onclick="filterBusinesses()">
-        Search
-      </button>
-
-    </div>
-
-    <div class="quick-search">
-      <span>Popular:</span>
-
-      <button onclick="quickCategory('Restaurant')">🍽️ Restaurants</button>
-      <button onclick="quickCategory('Lodge')">🏨 Lodges</button>
-      <button onclick="quickCategory('Beauty')">💇 Beauty</button>
-      <button onclick="quickCategory('Business Services')">💼 Services</button>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- STATS -->
-
-<section class="stats-section">
-  <div class="container stats-grid">
-
-    <div class="stat">
-      <strong id="businessCount">12+</strong>
-      <span>Businesses</span>
-    </div>
-
-    <div class="stat">
-      <strong id="categoryCount">4</strong>
-      <span>Categories</span>
-    </div>
-
-    <div class="stat">
-      <strong>2</strong>
-      <span>Locations</span>
-    </div>
-
-    <div class="stat">
-      <strong>🇿🇲</strong>
-      <span>Made for Zambia</span>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- FEATURED -->
-
-<section class="section featured-section">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <span class="eyebrow">⭐ FEATURED</span>
-
-      <h2>Featured businesses</h2>
-
-      <p>
-        Businesses currently highlighted on Zambia Business Hub.
-      </p>
-
-    </div>
-
-    <div id="featuredGrid" class="featured-grid"></div>
-
-  </div>
-
-</section>
-
-
-<!-- CATEGORIES -->
-
-<section id="categories" class="section">
-
-  <div class="container">
-
-    <div class="section-heading">
-      <span class="eyebrow">EXPLORE</span>
-      <h2>Browse by category</h2>
-      <p>Find the type of business or service you need.</p>
-    </div>
-
-    <div class="category-grid">
-
-      <button class="category-card"
-        onclick="quickCategory('Restaurant')">
-        <div class="category-icon">🍽️</div>
-        <div>
-          <h3>Restaurants</h3>
-          <p>Food, cafés & dining</p>
-        </div>
-      </button>
-
-      <button class="category-card"
-        onclick="quickCategory('Lodge')">
-        <div class="category-icon">🏨</div>
-        <div>
-          <h3>Lodges & Hotels</h3>
-          <p>Stay, relax & travel</p>
-        </div>
-      </button>
-
-      <button class="category-card"
-        onclick="quickCategory('Beauty')">
-        <div class="category-icon">💇</div>
-        <div>
-          <h3>Beauty</h3>
-          <p>Salons, spas & beauty</p>
-        </div>
-      </button>
-
-      <button class="category-card"
-        onclick="quickCategory('Business Services')">
-        <div class="category-icon">💼</div>
-        <div>
-          <h3>Business Services</h3>
-          <p>Professional services</p>
-        </div>
-      </button>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- DIRECTORY -->
-
-<section id="businesses" class="section directory-section">
-
-  <div class="container">
-
-    <div class="directory-header">
-
-      <div>
-        <span class="eyebrow">DIRECTORY</span>
-        <h2>Businesses in Zambia</h2>
-
-        <p id="resultsText">
-          Showing all businesses
-        </p>
-      </div>
-
-      <button class="clear-btn" onclick="clearFilters()">
-        Clear Filters
-      </button>
-
-    </div>
-
-    <div id="businessGrid" class="business-grid"></div>
-
-    <div id="noResults" class="no-results">
-
-      <div>🔎</div>
-
-      <h3>No businesses found</h3>
-
-      <p>
-        Try another business name, category or location.
-      </p>
-
-      <button onclick="clearFilters()">
-        Show All Businesses
-      </button>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- OWNER CTA -->
-
-<section class="owner-section">
-
-  <div class="container owner-content">
-
-    <div>
-
-      <span class="eyebrow light">
-        BUSINESS OWNERS
-      </span>
-
-      <h2>
-        Put your business in front of more customers.
-      </h2>
-
-      <p>
-        Claim your listing, correct your information and
-        make your business easier to discover.
-      </p>
-
-    </div>
-
-    <a href="#list-business" class="owner-btn">
-      Get Listed →
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- LIST BUSINESS -->
-
-<section id="list-business" class="section">
-
-  <div class="container">
-
-    <div class="form-layout">
-
-      <div class="form-intro">
-
-        <span class="eyebrow">
-          LIST YOUR BUSINESS
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="container nav-container">
+
+      <a href="#home" class="logo">
+        <span class="logo-mark">🇿🇲</span>
+        <span>
+          <strong>Zambia</strong>
+          <small>Business Hub</small>
         </span>
+      </a>
 
-        <h2>
-          Grow your online presence.
-        </h2>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        ☰
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#featured">Featured</a>
+        <a href="#businesses">Directory</a>
+        <a href="#about">About</a>
+        <a href="#list-business" class="nav-cta">List Your Business</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-pattern"></div>
+
+      <div class="container hero-content">
+
+        <div class="hero-badge">
+          🇿🇲 Zambia's Business Directory
+        </div>
+
+        <h1>
+          Find businesses.<br>
+          <span>Connect locally.</span>
+        </h1>
 
         <p>
-          Submit your business information and we'll
-          help you get started on Zambia Business Hub.
+          Discover trusted businesses, restaurants, lodges, beauty services
+          and more across Zambia.
         </p>
 
-        <div class="form-benefit">✓ Reach local customers</div>
-        <div class="form-benefit">✓ Improve online visibility</div>
-        <div class="form-benefit">✓ Claim your business listing</div>
-        <div class="form-benefit">✓ Featured options coming soon</div>
+        <!-- SEARCH -->
+        <div class="search-box">
+
+          <div class="search-input-wrap">
+            <span>🔎</span>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search businesses..."
+              autocomplete="off">
+          </div>
+
+          <select id="locationFilter" aria-label="Filter by location">
+            <option value="all">📍 All Zambia</option>
+            <option value="lusaka">Lusaka</option>
+            <option value="chingola">Chingola</option>
+            <option value="ndola">Ndola</option>
+          </select>
+
+          <select id="categoryFilter" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+            <option value="restaurant">Restaurants</option>
+            <option value="lodge">Lodges</option>
+            <option value="beauty">Beauty</option>
+            <option value="business services">Business Services</option>
+          </select>
+
+          <button id="searchButton" class="search-button">
+            Search
+          </button>
+
+        </div>
+
+        <div class="hero-trust">
+          <span>✓ Local businesses</span>
+          <span>✓ Easy discovery</span>
+          <span>✓ Free to browse</span>
+        </div>
 
       </div>
+    </section>
 
 
-      <form id="listingForm" class="listing-form">
+    <!-- ================= STATS ================= -->
+    <section class="stats-section">
+      <div class="container stats-grid">
 
-        <div class="form-row">
+        <div class="stat">
+          <strong id="businessCount">0+</strong>
+          <span>Businesses</span>
+        </div>
 
-          <div class="form-group">
-            <label>Business Name</label>
+        <div class="stat">
+          <strong id="categoryCount">0</strong>
+          <span>Categories</span>
+        </div>
 
-            <input
-              id="ownerBusiness"
-              type="text"
-              placeholder="Business name"
-              required
-            >
+        <div class="stat">
+          <strong id="locationCount">0</strong>
+          <span>Locations</span>
+        </div>
+
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Access</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= FEATURED ================= -->
+    <section class="section featured-section" id="featured">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">FEATURED</span>
+            <h2>Businesses worth discovering</h2>
+            <p>Explore some of the businesses currently featured on the Hub.</p>
+          </div>
+
+          <a href="#businesses" class="text-link">
+            View directory →
+          </a>
+        </div>
+
+        <div id="featuredGrid" class="business-grid featured-grid"></div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+    <section class="section categories-section">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <span class="eyebrow">EXPLORE</span>
+          <h2>Browse by category</h2>
+          <p>Find the type of business you're looking for.</p>
+        </div>
+
+        <div class="category-grid">
+
+          <button class="category-card" data-category="restaurant">
+            <span class="category-icon">🍽️</span>
+            <strong>Restaurants</strong>
+            <small>Food & dining</small>
+          </button>
+
+          <button class="category-card" data-category="lodge">
+            <span class="category-icon">🏨</span>
+            <strong>Lodges</strong>
+            <small>Places to stay</small>
+          </button>
+
+          <button class="category-card" data-category="beauty">
+            <span class="category-icon">💄</span>
+            <strong>Beauty</strong>
+            <small>Beauty & wellness</small>
+          </button>
+
+          <button class="category-card" data-category="business services">
+            <span class="category-icon">💼</span>
+            <strong>Business Services</strong>
+            <small>Professional services</small>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= DIRECTORY ================= -->
+    <section class="section directory-section" id="businesses">
+      <div class="container">
+
+        <div class="directory-header">
+
+          <div>
+            <span class="eyebrow">DIRECTORY</span>
+            <h2>Businesses in Zambia</h2>
+            <p id="resultsText">Loading businesses...</p>
+          </div>
+
+          <button class="clear-btn" id="clearFilters">
+            Clear Filters
+          </button>
+
+        </div>
+
+        <div id="activeFilters" class="active-filters"></div>
+
+        <div id="businessGrid" class="business-grid"></div>
+
+        <div id="noResults" class="no-results hidden">
+          <div class="empty-icon">🔎</div>
+          <h3>No businesses found</h3>
+          <p>Try another business name, category or location.</p>
+          <button id="showAllButton" class="primary-button">
+            Show All Businesses
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= LIST BUSINESS CTA ================= -->
+    <section class="owner-section" id="list-business">
+      <div class="container owner-card">
+
+        <div>
+          <span class="eyebrow light">FOR BUSINESS OWNERS</span>
+
+          <h2>Want your business on the Hub?</h2>
+
+          <p>
+            Submit your business details and make it easier for customers
+            in Zambia to discover you.
+          </p>
+        </div>
+
+        <a href="#listing-form" class="white-button">
+          List Your Business →
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- ================= LISTING FORM ================= -->
+    <section class="section listing-section" id="listing-form">
+      <div class="container form-container">
+
+        <div class="section-heading centered">
+          <span class="eyebrow">GET LISTED</span>
+          <h2>Submit your business</h2>
+          <p>
+            Add your business details below. Your submission will be saved
+            on this device for now.
+          </p>
+        </div>
+
+        <form id="listingForm" class="listing-form">
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label for="ownerBusiness">Business Name *</label>
+              <input
+                type="text"
+                id="ownerBusiness"
+                required
+                placeholder="e.g. ABC Restaurant">
+            </div>
+
+            <div class="form-group">
+              <label for="ownerCategory">Category *</label>
+              <select id="ownerCategory" required>
+                <option value="">Select category</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Lodge">Lodge</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Business Services">Business Services</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label for="ownerLocation">City *</label>
+              <select id="ownerLocation" required>
+                <option value="">Select city</option>
+                <option value="Lusaka">Lusaka</option>
+                <option value="Ndola">Ndola</option>
+                <option value="Chingola">Chingola</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="ownerPhone">Phone / WhatsApp *</label>
+              <input
+                type="tel"
+                id="ownerPhone"
+                required
+                placeholder="e.g. 0977123456">
+            </div>
+
           </div>
 
           <div class="form-group">
-            <label>Category</label>
+            <label for="ownerDescription">Business Description</label>
+            <textarea
+              id="ownerDescription"
+              rows="5"
+              placeholder="Tell customers about your business..."></textarea>
+          </div>
 
-            <select id="ownerCategory" required>
-              <option value="">Select category</option>
-              <option>Restaurant</option>
-              <option>Lodge</option>
-              <option>Beauty</option>
-              <option>Business Services</option>
-              <option>Other</option>
-            </select>
+          <button type="submit" class="primary-button full-button">
+            Submit Business →
+          </button>
+
+          <div id="formMessage" class="form-message hidden"></div>
+
+        </form>
+
+      </div>
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+
+        <div>
+          <span class="eyebrow">ABOUT THE HUB</span>
+
+          <h2>Helping Zambia discover local businesses.</h2>
+
+          <p>
+            Zambia Business Hub is a simple online directory designed to
+            make it easier to discover businesses and services across Zambia.
+          </p>
+
+          <p>
+            Search, explore, contact businesses and find useful services
+            from your phone or computer.
+          </p>
+        </div>
+
+        <div class="about-features">
+
+          <div class="about-feature">
+            <span>🔎</span>
+            <div>
+              <strong>Easy discovery</strong>
+              <p>Find businesses without searching through endless pages.</p>
+            </div>
+          </div>
+
+          <div class="about-feature">
+            <span>📱</span>
+            <div>
+              <strong>Mobile friendly</strong>
+              <p>Designed to work comfortably on phones.</p>
+            </div>
+          </div>
+
+          <div class="about-feature">
+            <span>🇿🇲</span>
+            <div>
+              <strong>Zambia focused</strong>
+              <p>Built around businesses and customers in Zambia.</p>
+            </div>
           </div>
 
         </div>
 
+      </div>
+    </section>
 
-        <div class="form-row">
-
-          <div class="form-group">
-            <label>Location</label>
-
-            <input
-              id="ownerLocation"
-              type="text"
-              placeholder="e.g. Lusaka"
-              required
-            >
-          </div>
-
-          <div class="form-group">
-            <label>Phone / WhatsApp</label>
-
-            <input
-              id="ownerPhone"
-              type="tel"
-              placeholder="+260..."
-              required
-            >
-          </div>
-
-        </div>
+  </main>
 
 
-        <div class="form-group">
-          <label>Business Description</label>
+  <!-- ================= MODAL ================= -->
+  <div id="businessModal" class="modal hidden" role="dialog" aria-modal="true">
 
-          <textarea
-            id="ownerDescription"
-            rows="4"
-            placeholder="Briefly describe your business..."
-          ></textarea>
-        </div>
+    <div class="modal-overlay" id="modalOverlay"></div>
 
+    <div class="modal-card">
 
-        <button type="submit" class="submit-btn">
-          Submit via WhatsApp →
-        </button>
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        ×
+      </button>
 
-        <small>
-          Your submission will open WhatsApp.
-        </small>
-
-      </form>
+      <div id="modalBody"></div>
 
     </div>
 
   </div>
-</section>
 
 
-<!-- ABOUT -->
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
 
-<section id="about" class="about-section">
+      <div>
+        <a href="#home" class="logo footer-logo">
+          <span class="logo-mark">🇿🇲</span>
+          <span>
+            <strong>Zambia</strong>
+            <small>Business Hub</small>
+          </span>
+        </a>
 
-  <div class="container about-content">
+        <p>
+          Find. Connect. Grow.
+        </p>
+      </div>
 
-    <div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#businesses">Directory</a>
+        <a href="#featured">Featured</a>
+        <a href="#about">About</a>
+      </div>
 
-      <span class="eyebrow">ABOUT ZAMBIA BUSINESS HUB</span>
-
-      <h2>
-        One place to discover Zambia's businesses.
-      </h2>
-
-    </div>
-
-    <div>
-
-      <p>
-        Zambia Business Hub is being built to make it
-        easier for customers to discover local businesses
-        and connect directly with them.
-      </p>
-
-      <p>
-        Our mission is simple:
-        <strong>Find. Connect. Grow.</strong>
-      </p>
-
-      <div class="verification-note">
-        🟡 <strong>Unclaimed</strong> means the listing has
-        not yet been verified by the business owner.
+      <div>
+        <h4>Businesses</h4>
+        <a href="#listing-form">List Your Business</a>
+        <a href="#businesses">Find a Business</a>
       </div>
 
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-  <div class="container footer-content">
-
-    <div>
-
-      <div class="footer-brand">
-        🇿🇲 Zambia Business Hub
+    <div class="footer-bottom">
+      <div class="container">
+        <p>
+          © <span id="year"></span> Zambia Business Hub. Built in Zambia 🇿🇲
+        </p>
       </div>
-
-      <p>Find. Connect. Grow.</p>
-
     </div>
-
-    <div class="footer-links">
-      <a href="#home">Home</a>
-      <a href="#businesses">Businesses</a>
-      <a href="#categories">Categories</a>
-      <a href="#list-business">List Business</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © <span id="year"></span> Zambia Business Hub.
-    All rights reserved.
-  </div>
-
-</footer>
+  </footer>
 
 
-<!-- MODAL -->
-
-<div id="businessModal" class="modal">
-
-  <div class="modal-overlay" onclick="closeModal()"></div>
-
-  <div class="modal-content">
-
-    <button class="modal-close" onclick="closeModal()">
-      ×
-    </button>
-
-    <div id="modalBody"></div>
-
-  </div>
-
-</div>
-
-
-<script src="app.js"></script>
+  <script src="app.js?v=3.0"></script>
 
 </body>
   </html>
