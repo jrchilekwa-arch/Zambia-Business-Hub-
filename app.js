@@ -1,20 +1,45 @@
 /* =========================================================
-   ZAMBIA BUSINESS HUB V3.0
-   FUNCTIONAL DIRECTORY
-========================================================= */
+   🇿🇲 ZAMBIA BUSINESS HUB
+   V3.0 — ZAMBIA GREEN PREMIUM
+   =========================================================
+
+   FEATURES
+   • Business directory
+   • 13 business listings
+   • Featured businesses
+   • Search
+   • Category filtering
+   • Location filtering
+   • Business details modal
+   • Phone calls
+   • WhatsApp
+   • Google Maps
+   • Favorites
+   • Recently viewed
+   • List Your Business
+   • Mobile navigation
+   • Toast notifications
+   • Safe HTML rendering
+   ========================================================= */
 
 
 /* =========================================================
-   SETTINGS
-========================================================= */
+   HUB SETTINGS
+   ========================================================= */
 
-const HUB_WHATSAPP = "260765054612";
 const HUB_NAME = "Zambia Business Hub";
+const HUB_WHATSAPP = "260765054612";
+
+const STORAGE_KEYS = {
+  favorites: "zbh_favorites_v3",
+  recent: "zbh_recent_v3",
+  listings: "zbh_listings_v3"
+};
 
 
 /* =========================================================
    BUSINESS DATABASE
-========================================================= */
+   ========================================================= */
 
 const businesses = [
 
@@ -27,6 +52,7 @@ const businesses = [
     province: "Lusaka",
     phone: "260211427700",
     whatsapp: "260211427700",
+    address: "Lusaka, Zambia",
     rating: 4.7,
     reviews: 246,
     hours: "Open 24 hours",
@@ -46,12 +72,13 @@ const businesses = [
     province: "Lusaka",
     phone: "260978728652",
     whatsapp: "260978728652",
+    address: "Lusaka, Zambia",
     rating: 4.4,
     reviews: 2297,
     hours: "Daily 07:30–17:00",
     featured: true,
     description:
-      "A relaxed cafe serving food and drinks in a comfortable setting.",
+      "A popular cafe serving food, coffee and refreshments in a relaxed environment.",
     image:
       "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80"
   },
@@ -65,12 +92,13 @@ const businesses = [
     province: "Lusaka",
     phone: "260211252206",
     whatsapp: "260211252206",
+    address: "Lusaka, Zambia",
     rating: 4.2,
     reviews: 1677,
-    hours: "Mon–Thu 12:00–22:00",
+    hours: "Mon–Thu 12:00–22:00 • Fri 12:00–22:00 • Sat 12:00–23:00",
     featured: true,
     description:
-      "A well-known dining destination serving a variety of meals and refreshments.",
+      "A well-known Lusaka restaurant offering dining and refreshments.",
     image:
       "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80"
   },
@@ -84,33 +112,35 @@ const businesses = [
     province: "Lusaka",
     phone: "260771036277",
     whatsapp: "260771036277",
+    address: "Lusaka, Zambia",
     rating: 4.8,
     reviews: 65,
-    hours: "Mon–Sat 10:30–22:30",
+    hours: "Mon–Sat 10:30–22:30 • Sun 08:30–22:30",
     featured: true,
     description:
-      "Restaurant and cafe offering a stylish dining experience.",
+      "A stylish restaurant and cafe offering quality food and a comfortable dining experience.",
     image:
-      "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80"
   },
 
   {
     id: 5,
     name: "The Sanctuary Restaurant",
     category: "Restaurant",
-    icon: "🍛",
+    icon: "🍴",
     city: "Lusaka",
     province: "Lusaka",
     phone: "260978688866",
     whatsapp: "260978688866",
+    address: "Lusaka, Zambia",
     rating: 4.5,
     reviews: 185,
-    hours: "Mon–Thu 12:00–22:00",
+    hours: "Mon–Thu 12:00–22:00 • Fri–Sun 12:00–23:00",
     featured: false,
     description:
-      "A welcoming restaurant offering quality food and a relaxed atmosphere.",
+      "A welcoming restaurant providing meals and a comfortable atmosphere.",
     image:
-      "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80"
   },
 
   {
@@ -122,12 +152,13 @@ const businesses = [
     province: "Lusaka",
     phone: "260966757954",
     whatsapp: "260966757954",
+    address: "Lusaka, Zambia",
     rating: 4.0,
     reviews: 740,
-    hours: "Open 24 hours",
+    hours: "Open daily",
     featured: true,
     description:
-      "A peaceful lodge offering comfortable accommodation and great hospitality.",
+      "A peaceful lodge offering comfortable accommodation and hospitality.",
     image:
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80"
   },
@@ -141,12 +172,13 @@ const businesses = [
     province: "Lusaka",
     phone: "260971002010",
     whatsapp: "260971002010",
+    address: "Lusaka, Zambia",
     rating: 4.5,
     reviews: 1386,
-    hours: "Open 24 hours",
+    hours: "Open daily",
     featured: true,
     description:
-      "A beautiful lodge offering accommodation, nature and a relaxing getaway.",
+      "A beautiful lodge offering accommodation, relaxation and a nature-focused experience.",
     image:
       "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=900&q=80"
   },
@@ -160,9 +192,10 @@ const businesses = [
     province: "Lusaka",
     phone: "260767471112",
     whatsapp: "260767471112",
+    address: "Lusaka, Zambia",
     rating: 4.8,
     reviews: 636,
-    hours: "Open today",
+    hours: "Open daily",
     featured: true,
     description:
       "Professional beauty and wellness services for your personal care needs.",
@@ -179,14 +212,15 @@ const businesses = [
     province: "Lusaka",
     phone: "260974227332",
     whatsapp: "260974227332",
+    address: "Lusaka, Zambia",
     rating: 4.7,
     reviews: 96,
-    hours: "Open today",
+    hours: "Open daily",
     featured: false,
     description:
-      "Beauty and personal care services with a focus on style and wellness.",
+      "A beauty and hair care business serving customers in Lusaka.",
     image:
-      "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=80"
   },
 
   {
@@ -198,14 +232,15 @@ const businesses = [
     province: "Lusaka",
     phone: "260973372652",
     whatsapp: "260973372652",
+    address: "Lusaka, Zambia",
     rating: 4.5,
     reviews: 147,
-    hours: "Open today",
+    hours: "Open daily",
     featured: false,
     description:
-      "Beauty services designed to help customers look and feel their best.",
+      "Beauty and personal care services for customers in Lusaka.",
     image:
-      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=80"
   },
 
   {
@@ -217,12 +252,13 @@ const businesses = [
     province: "Lusaka",
     phone: "260951595566",
     whatsapp: "260951595566",
+    address: "Lusaka, Zambia",
     rating: 4.9,
     reviews: 8,
     hours: "Business hours",
     featured: false,
     description:
-      "Professional business solutions and services for organisations and individuals.",
+      "Professional business solutions and services for individuals and organizations.",
     image:
       "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80"
   },
@@ -236,12 +272,13 @@ const businesses = [
     province: "Copperbelt",
     phone: "260964533535",
     whatsapp: "260964533535",
+    address: "Chingola, Copperbelt, Zambia",
     rating: 4.0,
     reviews: 1,
     hours: "Business hours",
     featured: false,
     description:
-      "Business support services serving customers in Chingola.",
+      "Business services serving customers and businesses in Chingola.",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
   },
@@ -255,530 +292,430 @@ const businesses = [
     province: "Copperbelt",
     phone: "260974445557",
     whatsapp: "260974445557",
+    address: "Ndola, Copperbelt, Zambia",
     rating: null,
     reviews: null,
-    hours: "Check with business",
+    hours: "Open daily",
     featured: true,
     description:
-      "A restaurant serving customers in Ndola.",
+      "A restaurant serving customers in Ndola with a variety of meals.",
     image:
-      "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
   }
 
 ];
 
 
 /* =========================================================
-   STATE
-========================================================= */
+   DOM HELPERS
+   ========================================================= */
 
-let currentBusinesses = businesses.slice();
+function getElement(...ids) {
+  for (const id of ids) {
+    const element = document.getElementById(id);
 
-let favorites = [];
+    if (element) {
+      return element;
+    }
+  }
 
-try {
-  favorites = JSON.parse(
-    localStorage.getItem("zbh_favorites") || "[]"
-  );
-} catch (error) {
-  favorites = [];
+  return null;
+}
+
+
+function query(selector) {
+  return document.querySelector(selector);
+}
+
+
+function queryAll(selector) {
+  return Array.from(document.querySelectorAll(selector));
 }
 
 
 /* =========================================================
-   DOM READY
-========================================================= */
+   SAFE HTML
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+function escapeHTML(value) {
 
-  initializeSite();
+  if (value === null || value === undefined) {
+    return "";
+  }
 
-});
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
 
 /* =========================================================
-   INITIALIZE
-========================================================= */
+   LOCAL STORAGE
+   ========================================================= */
 
-function initializeSite() {
+function getStorage(key, fallback = []) {
 
-  setYear();
+  try {
 
+    const saved = localStorage.getItem(key);
+
+    if (!saved) {
+      return fallback;
+    }
+
+    return JSON.parse(saved);
+
+  } catch (error) {
+
+    console.warn("Storage read error:", error);
+
+    return fallback;
+  }
+}
+
+
+function setStorage(key, value) {
+
+  try {
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(value)
+    );
+
+  } catch (error) {
+
+    console.warn("Storage write error:", error);
+  }
+}
+
+
+/* =========================================================
+   FAVORITES
+   ========================================================= */
+
+let favorites = getStorage(
+  STORAGE_KEYS.favorites,
+  []
+);
+
+
+function isFavorite(id) {
+
+  return favorites.includes(Number(id));
+}
+
+
+function toggleFavorite(id) {
+
+  id = Number(id);
+
+  if (favorites.includes(id)) {
+
+    favorites = favorites.filter(
+      favoriteId => favoriteId !== id
+    );
+
+    showToast("Removed from favorites");
+
+  } else {
+
+    favorites.push(id);
+
+    showToast("Added to favorites ❤️");
+  }
+
+  setStorage(
+    STORAGE_KEYS.favorites,
+    favorites
+  );
+
+  renderBusinesses();
   renderFeatured();
-
-  renderBusinesses(businesses);
-
-  setupSearch();
-
-  setupFilters();
-
-  setupCategories();
-
-  setupMobileMenu();
-
-  setupListingForm();
-
-  setupModal();
-
-  setupLocations();
-
-  setupNavigation();
-
+  refreshModalFavorite(id);
 }
 
 
-/* =========================================================
-   YEAR
-========================================================= */
+function refreshModalFavorite(id) {
 
-function setYear() {
-
-  const year = document.getElementById("year");
-
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function setupSearch() {
-
-  const searchForm =
-    document.getElementById("searchForm");
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  if (!searchForm || !searchInput) {
-    return;
-  }
-
-  searchForm.addEventListener("submit", function (event) {
-
-    event.preventDefault();
-
-    applyFilters();
-
-    document
-      .getElementById("directory")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
-
-  });
-
-  searchInput.addEventListener(
-    "input",
-    function () {
-      applyFilters();
-    }
-  );
-
-}
-
-
-/* =========================================================
-   FILTERS
-========================================================= */
-
-function setupFilters() {
-
-  const locationFilter =
-    document.getElementById("locationFilter");
-
-  const categoryFilter =
-    document.getElementById("categoryFilter");
-
-  const clearFilters =
-    document.getElementById("clearFilters");
-
-  const resetSearch =
-    document.getElementById("resetSearch");
-
-  if (locationFilter) {
-
-    locationFilter.addEventListener(
-      "change",
-      applyFilters
-    );
-
-  }
-
-  if (categoryFilter) {
-
-    categoryFilter.addEventListener(
-      "change",
-      applyFilters
-    );
-
-  }
-
-  if (clearFilters) {
-
-    clearFilters.addEventListener(
-      "click",
-      clearAllFilters
-    );
-
-  }
-
-  if (resetSearch) {
-
-    resetSearch.addEventListener(
-      "click",
-      clearAllFilters
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   APPLY FILTERS
-========================================================= */
-
-function applyFilters() {
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  const locationFilter =
-    document.getElementById("locationFilter");
-
-  const categoryFilter =
-    document.getElementById("categoryFilter");
-
-  const search =
-    searchInput
-      ? searchInput.value.trim().toLowerCase()
-      : "";
-
-  const location =
-    locationFilter
-      ? locationFilter.value.toLowerCase()
-      : "all";
-
-  const category =
-    categoryFilter
-      ? categoryFilter.value.toLowerCase()
-      : "all";
-
-  currentBusinesses =
-    businesses.filter(function (business) {
-
-      const searchableText = (
-        business.name +
-        " " +
-        business.category +
-        " " +
-        business.city +
-        " " +
-        business.province +
-        " " +
-        business.description
-      ).toLowerCase();
-
-      const matchesSearch =
-        !search ||
-        searchableText.includes(search);
-
-      const matchesLocation =
-        location === "all" ||
-        business.city.toLowerCase() === location;
-
-      const matchesCategory =
-        category === "all" ||
-        business.category.toLowerCase() === category;
-
-      return (
-        matchesSearch &&
-        matchesLocation &&
-        matchesCategory
-      );
-
-    });
-
-  renderBusinesses(currentBusinesses);
-
-}
-
-
-/* =========================================================
-   CLEAR FILTERS
-========================================================= */
-
-function clearAllFilters() {
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  const locationFilter =
-    document.getElementById("locationFilter");
-
-  const categoryFilter =
-    document.getElementById("categoryFilter");
-
-  if (searchInput) {
-    searchInput.value = "";
-  }
-
-  if (locationFilter) {
-    locationFilter.value = "all";
-  }
-
-  if (categoryFilter) {
-    categoryFilter.value = "all";
-  }
-
-  currentBusinesses = businesses.slice();
-
-  renderBusinesses(currentBusinesses);
-
-  window.scrollTo({
-    top: document.getElementById("directory").offsetTop - 70,
-    behavior: "smooth"
-  });
-
-}
-
-
-/* =========================================================
-   CATEGORY BUTTONS
-========================================================= */
-
-function setupCategories() {
-
-  const categoryCards =
-    document.querySelectorAll(
-      ".category-card"
-    );
-
-  categoryCards.forEach(function (card) {
-
-    card.addEventListener(
-      "click",
-      function () {
-
-        const category =
-          card.getAttribute("data-category");
-
-        const categoryFilter =
-          document.getElementById("categoryFilter");
-
-        if (categoryFilter) {
-
-          categoryFilter.value =
-            category === "all"
-              ? "all"
-              : category;
-
-        }
-
-        applyFilters();
-
-        document
-          .getElementById("directory")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-      }
-    );
-
-  });
-
-
-  const viewAll =
+  const button =
     document.querySelector(
-      '[data-category="all"]'
+      `[data-modal-favorite="${id}"]`
     );
 
-  if (viewAll) {
-
-    viewAll.addEventListener(
-      "click",
-      clearAllFilters
-    );
-
+  if (!button) {
+    return;
   }
 
+  button.innerHTML = isFavorite(id)
+    ? "♥ Saved"
+    : "♡ Save";
 }
 
 
 /* =========================================================
-   RENDER FEATURED
-========================================================= */
+   RECENTLY VIEWED
+   ========================================================= */
 
-function renderFeatured() {
+function addRecentlyViewed(id) {
 
-  const featuredGrid =
-    document.getElementById(
-      "featuredGrid"
-    );
+  id = Number(id);
 
-  if (!featuredGrid) {
-    return;
-  }
-
-  const featured =
-    businesses.filter(function (business) {
-      return business.featured === true;
-    });
-
-  featuredGrid.innerHTML =
-    featured
-      .slice(0, 6)
-      .map(createBusinessCard)
-      .join("");
-
-  attachBusinessCardEvents(
-    featuredGrid
+  let recent = getStorage(
+    STORAGE_KEYS.recent,
+    []
   );
 
+  recent = recent.filter(
+    recentId => Number(recentId) !== id
+  );
+
+  recent.unshift(id);
+
+  recent = recent.slice(0, 6);
+
+  setStorage(
+    STORAGE_KEYS.recent,
+    recent
+  );
 }
 
 
 /* =========================================================
-   RENDER DIRECTORY
-========================================================= */
+   FILTER STATE
+   ========================================================= */
 
-function renderBusinesses(list) {
+let currentSearch = "";
+let currentLocation = "all";
+let currentCategory = "all";
 
-  const businessGrid =
-    document.getElementById(
-      "businessGrid"
-    );
 
-  const noResults =
-    document.getElementById(
-      "noResults"
-    );
+/* =========================================================
+   BUSINESS COUNT
+   ========================================================= */
 
-  const resultsText =
-    document.getElementById(
-      "resultsText"
-    );
+function updateBusinessCount() {
 
-  if (!businessGrid) {
+  const countElement =
+    getElement("businessCount");
+
+  if (!countElement) {
     return;
   }
 
-  if (resultsText) {
+  countElement.textContent =
+    `${businesses.length}+`;
+}
 
-    resultsText.textContent =
-      list.length +
-      " business" +
-      (list.length === 1 ? "" : "es") +
-      " found";
 
+/* =========================================================
+   CATEGORY HELPERS
+   ========================================================= */
+
+function normalizeCategory(category) {
+
+  if (!category) {
+    return "all";
   }
 
-  if (list.length === 0) {
+  const value =
+    String(category)
+      .toLowerCase()
+      .trim();
 
-    businessGrid.innerHTML = "";
-
-    if (noResults) {
-      noResults.classList.remove("hidden");
-    }
-
-    return;
-
+  if (
+    value.includes("restaurant") ||
+    value.includes("food") ||
+    value.includes("cafe")
+  ) {
+    return "restaurant";
   }
 
-  if (noResults) {
-    noResults.classList.add("hidden");
+  if (
+    value.includes("lodge") ||
+    value.includes("hotel") ||
+    value.includes("travel")
+  ) {
+    return "lodge";
   }
 
-  businessGrid.innerHTML =
-    list.map(createBusinessCard).join("");
+  if (
+    value.includes("beauty") ||
+    value.includes("salon") ||
+    value.includes("spa")
+  ) {
+    return "beauty";
+  }
 
-  attachBusinessCardEvents(
-    businessGrid
-  );
+  if (
+    value.includes("business") ||
+    value.includes("service")
+  ) {
+    return "business-services";
+  }
 
+  if (value.includes("shopping")) {
+    return "shopping";
+  }
+
+  if (value.includes("technology")) {
+    return "technology";
+  }
+
+  return value;
+}
+
+
+/* =========================================================
+   FILTER BUSINESSES
+   ========================================================= */
+
+function getFilteredBusinesses() {
+
+  return businesses.filter(business => {
+
+    const searchText =
+      currentSearch.toLowerCase().trim();
+
+    const matchesSearch =
+      !searchText ||
+      business.name.toLowerCase().includes(searchText) ||
+      business.category.toLowerCase().includes(searchText) ||
+      business.city.toLowerCase().includes(searchText) ||
+      business.province.toLowerCase().includes(searchText) ||
+      business.description.toLowerCase().includes(searchText);
+
+    const matchesLocation =
+      currentLocation === "all" ||
+      business.city.toLowerCase() ===
+        currentLocation.toLowerCase() ||
+      business.province.toLowerCase() ===
+        currentLocation.toLowerCase();
+
+    const matchesCategory =
+      currentCategory === "all" ||
+      normalizeCategory(business.category) ===
+        normalizeCategory(currentCategory);
+
+    return (
+      matchesSearch &&
+      matchesLocation &&
+      matchesCategory
+    );
+  });
+}
+
+
+/* =========================================================
+   BUSINESS IMAGE FALLBACK
+   ========================================================= */
+
+function imageFallback(event) {
+
+  if (!event.target.dataset.fallback) {
+
+    event.target.dataset.fallback = "true";
+
+    event.target.src =
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80";
+  }
 }
 
 
 /* =========================================================
    BUSINESS CARD
-========================================================= */
+   ========================================================= */
 
 function createBusinessCard(business) {
 
-  const favorite =
-    favorites.includes(business.id);
-
-  const ratingText =
+  const ratingHTML =
     business.rating !== null
-      ? "⭐ " + business.rating
-      : "⭐ Public listing";
+      ? `
+        <span class="rating">
+          ★ ${escapeHTML(business.rating)}
+        </span>
 
-  const reviewsText =
-    business.reviews !== null
-      ? "(" + business.reviews + " reviews)"
-      : "";
+        ${
+          business.reviews !== null
+            ? `<span class="reviews">
+                (${escapeHTML(business.reviews)} reviews)
+               </span>`
+            : ""
+        }
+      `
+      : `
+        <span class="public-rating">
+          Public listing
+        </span>
+      `;
+
+  const favoriteIcon =
+    isFavorite(business.id)
+      ? "♥"
+      : "♡";
 
   return `
+
     <article
       class="business-card"
-      data-id="${business.id}"
+      data-business-id="${business.id}"
     >
 
-      <div
-        class="business-image"
-        style="background-image:url('${business.image}')"
-      >
+      <div class="business-image-wrap">
+
+        <img
+          class="business-image"
+          src="${escapeHTML(business.image)}"
+          alt="${escapeHTML(business.name)}"
+          loading="lazy"
+          onerror="imageFallback(event)"
+        >
 
         ${
           business.featured
-            ? `<span class="featured-badge">Featured</span>`
+            ? `
+              <span class="featured-badge">
+                Featured
+              </span>
+            `
             : ""
         }
 
         <button
-          class="favorite-button ${
-            favorite ? "active" : ""
-          }"
-          data-favorite="${business.id}"
+          class="favorite-button"
           type="button"
           aria-label="Save ${escapeHTML(business.name)}"
+          onclick="toggleFavorite(${business.id})"
         >
-          ${favorite ? "♥" : "♡"}
+          ${favoriteIcon}
         </button>
 
       </div>
 
       <div class="business-content">
 
-        <span class="business-category">
-          ${business.icon}
-          ${escapeHTML(business.category)}
-        </span>
+        <div class="business-category">
+          <span>
+            ${escapeHTML(business.icon)}
+          </span>
 
-        <h3 class="business-name">
+          ${escapeHTML(business.category)}
+        </div>
+
+        <h3>
           ${escapeHTML(business.name)}
         </h3>
 
-        <div class="business-meta">
+        <div class="business-rating">
+          ${ratingHTML}
+        </div>
 
-          <span class="rating">
-            ${ratingText}
-          </span>
-
-          <span>
-            ${reviewsText}
-          </span>
-
-          <span>
-            📍 ${escapeHTML(business.city)}
-          </span>
-
+        <div class="business-location">
+          <span>📍</span>
+          ${escapeHTML(business.city)}, ${escapeHTML(business.province)}
         </div>
 
         <p class="business-description">
@@ -788,31 +725,31 @@ function createBusinessCard(business) {
         <div class="business-actions">
 
           <button
-            class="view-button"
-            data-view="${business.id}"
+            class="primary-button"
             type="button"
+            onclick="openBusiness(${business.id})"
           >
             View Details →
           </button>
 
           <a
-            class="action-button"
-            href="tel:+${business.phone}"
+            class="icon-action"
+            href="tel:+${escapeHTML(business.phone)}"
             aria-label="Call ${escapeHTML(business.name)}"
-            title="Call"
           >
             ☎
+            <span>Call</span>
           </a>
 
           <a
-            class="action-button"
-            href="https://wa.me/${business.whatsapp}"
+            class="icon-action"
+            href="https://wa.me/${escapeHTML(business.whatsapp)}"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="WhatsApp ${escapeHTML(business.name)}"
-            title="WhatsApp"
           >
             ◉
+            <span>WhatsApp</span>
           </a>
 
         </div>
@@ -821,201 +758,185 @@ function createBusinessCard(business) {
 
     </article>
   `;
-
 }
 
 
 /* =========================================================
-   CARD EVENTS
-========================================================= */
+   RENDER FEATURED BUSINESSES
+   ========================================================= */
 
-function attachBusinessCardEvents(container) {
+function renderFeatured() {
 
-  const viewButtons =
-    container.querySelectorAll(
-      "[data-view]"
+  const container =
+    getElement("featuredGrid");
+
+  if (!container) {
+    console.warn(
+      "featuredGrid was not found."
     );
 
-  viewButtons.forEach(function (button) {
+    return;
+  }
 
-    button.addEventListener(
-      "click",
-      function () {
-
-        const id =
-          Number(
-            button.getAttribute(
-              "data-view"
-            )
-          );
-
-        openBusiness(id);
-
-      }
+  const featured =
+    businesses.filter(
+      business => business.featured
     );
 
-  });
+  if (!featured.length) {
 
+    container.innerHTML = `
+      <div class="empty-state">
+        <h3>No featured businesses yet</h3>
+        <p>Check back soon for featured businesses.</p>
+      </div>
+    `;
 
-  const favoriteButtons =
-    container.querySelectorAll(
-      "[data-favorite]"
-    );
+    return;
+  }
 
-  favoriteButtons.forEach(function (button) {
-
-    button.addEventListener(
-      "click",
-      function () {
-
-        const id =
-          Number(
-            button.getAttribute(
-              "data-favorite"
-            )
-          );
-
-        toggleFavorite(id);
-
-      }
-    );
-
-  });
-
+  container.innerHTML =
+    featured
+      .map(createBusinessCard)
+      .join("");
 }
 
 
 /* =========================================================
-   FAVORITES
-========================================================= */
+   RENDER DIRECTORY
+   ========================================================= */
 
-function toggleFavorite(id) {
+function renderBusinesses() {
 
-  if (favorites.includes(id)) {
+  const container =
+    getElement("businessGrid");
 
-    favorites =
-      favorites.filter(function (item) {
-        return item !== id;
-      });
+  const noResults =
+    getElement("noResults");
 
-    showToast("Removed from saved businesses");
+  const resultsText =
+    getElement("resultsText");
 
-  } else {
+  if (!container) {
 
-    favorites.push(id);
+    console.warn(
+      "businessGrid was not found."
+    );
 
-    showToast("Business saved ❤️");
-
+    return;
   }
 
-  try {
+  const filtered =
+    getFilteredBusinesses();
 
-    localStorage.setItem(
-      "zbh_favorites",
-      JSON.stringify(favorites)
-    );
+  if (resultsText) {
 
-  } catch (error) {
-    console.log("Local storage unavailable.");
-  }
+    if (
+      currentSearch ||
+      currentLocation !== "all" ||
+      currentCategory !== "all"
+    ) {
 
-  renderFeatured();
+      resultsText.textContent =
+        `${filtered.length} business${
+          filtered.length === 1 ? "" : "es"
+        } found`;
 
-  renderBusinesses(
-    currentBusinesses
-  );
+    } else {
 
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function setupModal() {
-
-  const modal =
-    document.getElementById(
-      "businessModal"
-    );
-
-  const close =
-    document.getElementById(
-      "modalClose"
-    );
-
-  const backdrop =
-    document.querySelector(
-      ".modal-backdrop"
-    );
-
-  if (close) {
-
-    close.addEventListener(
-      "click",
-      closeModal
-    );
-
-  }
-
-  if (backdrop) {
-
-    backdrop.addEventListener(
-      "click",
-      closeModal
-    );
-
-  }
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
-
-      if (event.key === "Escape") {
-        closeModal();
-      }
-
+      resultsText.textContent =
+        "Discover businesses across Zambia";
     }
-  );
+  }
 
+  if (!filtered.length) {
+
+    container.innerHTML = "";
+
+    if (noResults) {
+      noResults.style.display = "block";
+    }
+
+    return;
+  }
+
+  if (noResults) {
+    noResults.style.display = "none";
+  }
+
+  container.innerHTML =
+    filtered
+      .map(createBusinessCard)
+      .join("");
 }
 
 
 /* =========================================================
-   OPEN BUSINESS
-========================================================= */
+   SEARCH
+   ========================================================= */
 
-function openBusiness(id) {
+function performSearch() {
 
-  const business =
-    businesses.find(function (item) {
-      return item.id === id;
+  const searchInput =
+    getElement(
+      "searchInput",
+      "heroSearch",
+      "businessSearch"
+    );
+
+  const locationFilter =
+    getElement(
+      "locationFilter",
+      "heroLocation"
+    );
+
+  if (searchInput) {
+    currentSearch =
+      searchInput.value.trim();
+  }
+
+  if (locationFilter) {
+    currentLocation =
+      locationFilter.value || "all";
+  }
+
+  renderBusinesses();
+
+  const directory =
+    document.getElementById(
+      "directory"
+    );
+
+  if (directory) {
+
+    directory.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
-
-  if (!business) {
-    return;
   }
+}
 
-  const modal =
-    document.getElementById(
-      "businessModal"
+
+/* =========================================================
+   SEARCH INPUT LIVE UPDATE
+   ========================================================= */
+
+function setupSearch() {
+
+  const inputs =
+    queryAll(
+      "#searchInput, #heroSearch, #businessSearch"
     );
 
-  const modalBody =
-    document.getElementById(
-      "modalBody"
-    );
+  inputs.forEach(input => {
 
-  if (!modal || !modalBody) {
-    return;
-  }
+    input.addEventListener(
+      "input",
+      function () {
 
-  const rating =
-    business.rating !== null
-      ? "⭐ " + business.rating
-      : "⭐ Public listing";
+        currentSearch =
+          this.value.trim();
 
-  const reviews =
-    business.reviews !== null
-      ? " • " + business.reviews + " reviews"
-      : "";
+        renderBusinesses();
+      }
+    
