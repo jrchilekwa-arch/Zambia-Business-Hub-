@@ -2,51 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Zambia Business Hub 🇿🇲</title>
+  <meta name="theme-color" content="#020806">
+  <meta name="description" content="Zambia Business Hub - Discover trusted businesses, services and opportunities across Zambia.">
 
-  <meta
-    name="description"
-    content="Discover restaurants, lodges, beauty businesses and services across Zambia."
-  >
+  <title>Zambia Business Hub | Find. Connect. Grow.</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<header class="site-header">
 
-<header class="header">
+  <div class="container nav-wrap">
 
-  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Zambia Business Hub home">
 
-    <a href="#home" class="logo">
-      <span class="logo-mark">🇿🇲</span>
+      <span class="flag-logo">
+        <span></span>
+        <i></i>
+        <b></b>
+      </span>
 
-      <span>
-        <strong>Zambia Business Hub</strong>
+      <span class="brand-text">
+        <strong>Zambia</strong>
+        <em>Business Hub</em>
         <small>Find. Connect. Grow.</small>
       </span>
+
     </a>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-      ☰
-    </button>
-
-    <nav id="mainNav">
-      <a href="#home">Home</a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="active" href="#home">Home</a>
       <a href="#categories">Categories</a>
-      <a href="#directory">Businesses</a>
+      <a href="#businesses">Businesses</a>
       <a href="#about">About</a>
     </nav>
 
-    <a href="#list-business" class="nav-button">
-      + List Business
+    <div class="nav-actions">
+
+      <button
+        class="icon-btn"
+        id="topSearchBtn"
+        aria-label="Focus search">
+        ⌕
+      </button>
+
+      <select
+        id="topLocation"
+        class="top-location"
+        aria-label="Choose location">
+
+        <option value="all">All Zambia</option>
+        <option value="lusaka">Lusaka</option>
+        <option value="ndola">Ndola</option>
+        <option value="chingola">Chingola</option>
+
+      </select>
+
+      <a
+        class="primary-btn small"
+        href="#list-business">
+        + List Your Business
+      </a>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open menu">
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="mobile-nav" id="mobileNav">
+
+    <a href="#home">Home</a>
+
+    <a href="#categories">
+      Categories
+    </a>
+
+    <a href="#businesses">
+      Businesses
+    </a>
+
+    <a href="#about">
+      About
+    </a>
+
+    <a href="#list-business">
+      List Your Business
     </a>
 
   </div>
@@ -54,962 +105,1004 @@
 </header>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero" id="home">
-
-  <div class="hero-overlay"></div>
-
-  <div class="container hero-content">
-
-    <div class="hero-badge">
-      🇿🇲 ZAMBIA'S BUSINESS DIRECTORY
-    </div>
-
-    <h1>
-      Discover great businesses
-      <span>across Zambia.</span>
-    </h1>
-
-    <p>
-      Find restaurants, lodges, beauty services and local businesses
-      near you.
-    </p>
-
-    <div class="search-box">
-
-      <div class="search-field">
-        <span>🔎</span>
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search businesses..."
-        >
-      </div>
-
-      <div class="search-field location-field">
-        <span>📍</span>
-
-        <select id="locationFilter">
-          <option value="all">All Zambia</option>
-          <option value="lusaka">Lusaka</option>
-          <option value="ndola">Ndola</option>
-          <option value="chingola">Chingola</option>
-        </select>
-      </div>
-
-      <button id="searchBtn" class="search-btn">
-        Search
-      </button>
-
-    </div>
-
-    <div class="hero-features">
-      <span>✓ Local businesses</span>
-      <span>✓ Easy discovery</span>
-      <span>✓ Free to browse</span>
-    </div>
-
-  </div>
-
-</section>
+<main id="home">
 
 
-<!-- =====================================================
-     STATS
-===================================================== -->
+  <!-- HERO -->
 
-<section class="stats">
+  <section class="hero">
 
-  <div class="container stats-grid">
+    <div class="hero-grid"></div>
 
-    <div>
-      <strong>13+</strong>
-      <span>Businesses</span>
-    </div>
+    <div class="hero-glow glow-a"></div>
 
-    <div>
-      <strong>4</strong>
-      <span>Categories</span>
-    </div>
-
-    <div>
-      <strong>3</strong>
-      <span>Cities</span>
-    </div>
-
-    <div>
-      <strong>🇿🇲</strong>
-      <span>Zambia</span>
-    </div>
-
-  </div>
-
-</section>
+    <div class="hero-glow glow-b"></div>
 
 
-<!-- =====================================================
-     CATEGORIES
-===================================================== -->
+    <div class="container hero-inner">
 
-<section class="section" id="categories">
 
-  <div class="container">
+      <div class="hero-copy">
 
-    <div class="section-heading">
+        <div class="eyebrow">
+          ZAMBIA BUSINESS HUB
+          <span></span>
+        </div>
 
-      <div>
-        <span class="eyebrow">EXPLORE</span>
 
-        <h2>Popular Categories</h2>
+        <h1>
+          Discover great
+          <span>businesses</span>
+          across Zambia.
+        </h1>
+
 
         <p>
-          Find the right business for what you need.
+          Find restaurants, lodges, beauty services and local businesses near you.
+          Support local. Grow together.
         </p>
+
+
+        <form
+          class="search-panel"
+          id="searchForm">
+
+
+          <div class="search-field">
+
+            <span>⌕</span>
+
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search businesses..."
+              autocomplete="off">
+
+          </div>
+
+
+          <div class="search-field location-field">
+
+            <span>⌖</span>
+
+            <select
+              id="locationFilter"
+              aria-label="Filter by location">
+
+              <option value="all">
+                All Zambia
+              </option>
+
+              <option value="lusaka">
+                Lusaka
+              </option>
+
+              <option value="ndola">
+                Ndola
+              </option>
+
+              <option value="chingola">
+                Chingola
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <button
+            class="primary-btn search-btn"
+            type="submit">
+
+            ⌕
+            <span>Search</span>
+
+          </button>
+
+
+        </form>
+
+
+        <div class="hero-benefits">
+
+          <div>
+            <b>✓</b>
+            <span>Local businesses</span>
+          </div>
+
+          <div>
+            <b>ϟ</b>
+            <span>Easy discovery</span>
+          </div>
+
+          <div>
+            <b>♟</b>
+            <span>Free to browse</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ZAMBIA MAP -->
+
+      <div
+        class="hero-map"
+        aria-hidden="true">
+
+        <div class="map-ring ring-1"></div>
+
+        <div class="map-ring ring-2"></div>
+
+
+        <div class="zambia-map">
+
+          <span class="province p1"></span>
+          <span class="province p2"></span>
+          <span class="province p3"></span>
+          <span class="province p4"></span>
+          <span class="province p5"></span>
+          <span class="province p6"></span>
+
+
+          <span class="pin pin1">●</span>
+          <span class="pin pin2">●</span>
+          <span class="pin pin3">●</span>
+          <span class="pin pin4">●</span>
+          <span class="pin pin5">●</span>
+
+        </div>
+
+
+        <div class="map-label">
+
+          LOCAL DISCOVERY
+
+          <br>
+
+          <strong>ACROSS ZAMBIA</strong>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PHONE PREVIEW -->
+
+      <div
+        class="phone-preview"
+        aria-hidden="true">
+
+        <div class="phone-screen">
+
+
+          <div class="phone-top">
+
+            <span class="mini-logo">
+              🇿🇲
+            </span>
+
+            <b>
+              Zambia
+              <br>
+              <i>Business Hub</i>
+            </b>
+
+            <span>
+              ☰
+            </span>
+
+          </div>
+
+
+          <div class="phone-title">
+
+            Discover great
+
+            <br>
+
+            <strong>businesses</strong>
+
+            <br>
+
+            across Zambia.
+
+          </div>
+
+
+          <div class="phone-search">
+            ⌕ Search businesses...
+          </div>
+
+
+          <div class="phone-pills">
+
+            <span>
+              ✓ Local
+            </span>
+
+            <span>
+              ϟ Easy
+            </span>
+
+            <span>
+              ♟ Free
+            </span>
+
+          </div>
+
+
+          <div class="phone-section">
+            Popular Categories
+          </div>
+
+
+          <div class="phone-cats">
+
+            <span>🍽️</span>
+
+            <span>🛏️</span>
+
+            <span>💆</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- CATEGORIES -->
+
+  <section
+    class="section categories-section"
+    id="categories">
+
+    <div class="container">
+
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="eyebrow">
+            EXPLORE
+            <span></span>
+          </div>
+
+          <h2>
+            Popular Categories
+          </h2>
+
+          <p>
+            Find the type of business you're looking for.
+          </p>
+
+        </div>
+
+
+        <button
+          class="text-btn"
+          data-category="all">
+
+          View all categories →
+
+        </button>
+
+      </div>
+
+
+
+      <div class="category-grid">
+
+
+        <button
+          class="category-card"
+          data-category="restaurant">
+
+          <span>🍽️</span>
+
+          <strong>
+            Restaurants
+          </strong>
+
+          <small>
+            Food, cafes & dining
+          </small>
+
+          <b>→</b>
+
+        </button>
+
+
+
+        <button
+          class="category-card"
+          data-category="lodge">
+
+          <span>🛏️</span>
+
+          <strong>
+            Lodges & Hotels
+          </strong>
+
+          <small>
+            Stay, relax & travel
+          </small>
+
+          <b>→</b>
+
+        </button>
+
+
+
+        <button
+          class="category-card"
+          data-category="beauty">
+
+          <span>✿</span>
+
+          <strong>
+            Beauty
+          </strong>
+
+          <small>
+            Salons, spas & wellness
+          </small>
+
+          <b>→</b>
+
+        </button>
+
+
+
+        <button
+          class="category-card"
+          data-category="business services">
+
+          <span>▣</span>
+
+          <strong>
+            Business Services
+          </strong>
+
+          <small>
+            Professional services
+          </small>
+
+          <b>→</b>
+
+        </button>
+
+
+
+        <button
+          class="category-card"
+          data-category="shopping">
+
+          <span>◈</span>
+
+          <strong>
+            Shopping
+          </strong>
+
+          <small>
+            Retail & lifestyle
+          </small>
+
+          <b>→</b>
+
+        </button>
+
+
+
+        <button
+          class="category-card"
+          data-category="technology">
+
+          <span>⚙</span>
+
+          <strong>
+            Technology
+          </strong>
+
+          <small>
+            IT & digital services
+          </small>
+
+          <b>→</b>
+
+        </button>
+
+
       </div>
 
     </div>
 
-    <div class="category-grid">
-
-      <button class="category-card" data-category="Restaurant">
-        <div class="category-icon">🍽️</div>
-        <strong>Restaurants</strong>
-        <span>Food & dining</span>
-      </button>
-
-      <button class="category-card" data-category="Lodge">
-        <div class="category-icon">🏨</div>
-        <strong>Lodges & Hotels</strong>
-        <span>Stay & relax</span>
-      </button>
-
-      <button class="category-card" data-category="Beauty">
-        <div class="category-icon">💄</div>
-        <strong>Beauty</strong>
-        <span>Beauty & wellness</span>
-      </button>
-
-      <button class="category-card" data-category="Business Services">
-        <div class="category-icon">💼</div>
-        <strong>Business Services</strong>
-        <span>Professional services</span>
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =====================================================
-     FEATURED
-===================================================== -->
 
-<section class="section featured-section">
+  <!-- BUSINESSES -->
 
-  <div class="container">
+  <section
+    class="section businesses-section"
+    id="businesses">
 
-    <div class="section-heading row-heading">
+    <div class="container">
 
-      <div>
-        <span class="eyebrow">FEATURED</span>
 
-        <h2>Featured Businesses</h2>
+      <div class="section-head">
+
+        <div>
+
+          <div class="eyebrow">
+            FEATURED
+            <span></span>
+          </div>
+
+          <h2>
+            Featured Businesses
+          </h2>
+
+          <p>
+            Handpicked businesses you'll love.
+          </p>
+
+        </div>
+
+
+        <div class="result-tools">
+
+          <span id="resultsText">
+            13 businesses
+          </span>
+
+          <button
+            class="ghost-btn"
+            id="clearFilters">
+
+            Clear filters
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div
+        id="businessGrid"
+        class="business-grid">
+      </div>
+
+
+
+      <div
+        id="noResults"
+        class="no-results"
+        hidden>
+
+        <div>⌕</div>
+
+        <h3>
+          No businesses found
+        </h3>
 
         <p>
-          Handpicked businesses from our directory.
+          Try another search, category or location.
         </p>
+
+        <button
+          class="primary-btn"
+          id="noResultsClear">
+
+          Clear filters
+
+        </button>
+
       </div>
 
-      <a href="#directory" class="view-link">
-        View all →
+
+    </div>
+
+  </section>
+
+
+
+  <!-- EXPLORE ZAMBIA -->
+
+  <section class="explore-section">
+
+    <div class="container explore-card">
+
+
+      <div class="explore-copy">
+
+        <div class="eyebrow">
+          EXPLORE
+          <span></span>
+        </div>
+
+        <h2>
+          Explore Zambia
+        </h2>
+
+        <p>
+          Discover businesses and opportunities across the country.
+        </p>
+
+        <a
+          class="primary-btn"
+          href="#businesses">
+
+          Explore businesses →
+
+        </a>
+
+      </div>
+
+
+
+      <div class="big-map">
+
+        <div class="map-outline">
+
+          <span class="map-pin">
+            ●
+          </span>
+
+          <span class="map-pin">
+            ●
+          </span>
+
+          <span class="map-pin">
+            ●
+          </span>
+
+          <span class="map-pin">
+            ●
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="locations">
+
+        <h3>
+          Popular Locations
+        </h3>
+
+
+        <button
+          data-location="lusaka">
+
+          ⌖ Lusaka
+
+        </button>
+
+
+        <button
+          data-location="ndola">
+
+          ⌖ Ndola
+
+        </button>
+
+
+        <button
+          data-location="chingola">
+
+          ⌖ Chingola
+
+        </button>
+
+
+        <button
+          class="text-btn"
+          data-location="all">
+
+          View all locations →
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- LIST YOUR BUSINESS -->
+
+  <section
+    class="list-cta"
+    id="list-business">
+
+    <div class="container cta-inner">
+
+
+      <div>
+
+        <div class="eyebrow">
+          GROW TOGETHER
+          <span></span>
+        </div>
+
+        <h2>
+          Get your business listed today.
+        </h2>
+
+        <p>
+          Reach more customers and grow your brand across Zambia.
+        </p>
+
+      </div>
+
+
+      <button
+        class="primary-btn"
+        id="openListing">
+
+        + List Your Business →
+
+      </button>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ABOUT -->
+
+  <section
+    class="section about-section"
+    id="about">
+
+    <div class="container about-grid">
+
+
+      <div class="about-visual">
+
+        <div class="about-glow">
+          🇿🇲
+        </div>
+
+      </div>
+
+
+      <div class="about-copy">
+
+        <div class="eyebrow">
+          ABOUT ZAMBIA BUSINESS HUB
+          <span></span>
+        </div>
+
+        <h2>
+          Supporting Local Businesses
+        </h2>
+
+        <p>
+          Zambia Business Hub is a free online directory
+          that helps people discover and support local businesses,
+          services and opportunities across Zambia.
+        </p>
+
+      </div>
+
+
+      <div class="mission-card">
+
+        <span>
+          ♥
+        </span>
+
+        <div>
+
+          <strong>
+            Our Mission
+          </strong>
+
+          <p>
+            Connect people with trusted businesses
+            and help local businesses grow.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+
+    <div class="footer-brand">
+
+      <div class="brand">
+
+        <span class="flag-logo">
+
+          <span></span>
+          <i></i>
+          <b></b>
+
+        </span>
+
+
+        <span class="brand-text">
+
+          <strong>
+            Zambia
+          </strong>
+
+          <em>
+            Business Hub
+          </em>
+
+          <small>
+            Find. Connect. Grow.
+          </small>
+
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <div>
+
+      <h4>
+        Quick Links
+      </h4>
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#categories">
+        Categories
+      </a>
+
+      <a href="#businesses">
+        Businesses
+      </a>
+
+      <a href="#about">
+        About
       </a>
 
     </div>
 
 
-    <div class="business-grid" id="featuredGrid">
 
+    <div>
 
-      <!-- 1 -->
+      <h4>
+        For Businesses
+      </h4>
 
-      <article
-        class="business-card"
-        data-name="Copper Pot Restaurant"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
+      <a href="#list-business">
+        List Your Business
+      </a>
 
-        <div class="business-image restaurant">
-          🍽️
-          <span class="featured-badge">FEATURED</span>
-        </div>
+      <a href="#businesses">
+        Featured
+      </a>
 
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>Copper Pot Restaurant</h3>
-
-          <p class="location">
-            📍 Lusaka
-          </p>
-
-          <div class="rating">
-            ⭐ <strong>4.7</strong>
-            <span>(246 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260211427700"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260211427700"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 2 -->
-
-      <article
-        class="business-card"
-        data-name="3 Trees Cafe"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
-
-        <div class="business-image cafe">
-          ☕
-          <span class="featured-badge">FEATURED</span>
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>3 Trees Cafe</h3>
-
-          <p class="location">
-            📍 Lusaka
-          </p>
-
-          <div class="rating">
-            ⭐ <strong>4.4</strong>
-            <span>(2,297 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260978728652"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260978728652"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 3 -->
-
-      <article
-        class="business-card"
-        data-name="MOSAIC RESTAURANT & CAFE"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
-
-        <div class="business-image mosaic">
-          🍴
-          <span class="featured-badge">FEATURED</span>
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>MOSAIC RESTAURANT & CAFE</h3>
-
-          <p class="location">
-            📍 Lusaka
-          </p>
-
-          <div class="rating">
-            ⭐ <strong>4.8</strong>
-            <span>(65 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260771036277"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260771036277"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 4 -->
-
-      <article
-        class="business-card"
-        data-name="Lilayi Lodge"
-        data-category="Lodge"
-        data-location="lusaka"
-      >
-
-        <div class="business-image lodge">
-          🏨
-          <span class="featured-badge">FEATURED</span>
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Lodge
-          </span>
-
-          <h3>Lilayi Lodge</h3>
-
-          <p class="location">
-            📍 Lusaka
-          </p>
-
-          <div class="rating">
-            ⭐ <strong>4.5</strong>
-            <span>(1,386 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260971002010"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260971002010"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 5 -->
-
-      <article
-        class="business-card"
-        data-name="Palmwood Lodge"
-        data-category="Lodge"
-        data-location="lusaka"
-      >
-
-        <div class="business-image lodge2">
-          🌴
-          <span class="featured-badge">FEATURED</span>
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Lodge
-          </span>
-
-          <h3>Palmwood Lodge</h3>
-
-          <p class="location">
-            📍 Lusaka
-          </p>
-
-          <div class="rating">
-            ⭐ <strong>4.0</strong>
-            <span>(740 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260966757954"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260966757954"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 6 -->
-
-      <article
-        class="business-card"
-        data-name="Shodol Spa and Beauty Salon"
-        data-category="Beauty"
-        data-location="lusaka"
-      >
-
-        <div class="business-image beauty">
-          💆
-          <span class="featured-badge">FEATURED</span>
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Beauty
-          </span>
-
-          <h3>Shodol Spa and Beauty Salon</h3>
-
-          <p class="location">
-            📍 Lusaka
-          </p>
-
-          <div class="rating">
-            ⭐ <strong>4.8</strong>
-            <span>(636 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260767471112"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260767471112"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 7 -->
-
-      <article
-        class="business-card"
-        data-name="Nawab's Kitchen"
-        data-category="Restaurant"
-        data-location="ndola"
-      >
-
-        <div class="business-image indian">
-          🍛
-          <span class="featured-badge">FEATURED</span>
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>Nawab's Kitchen</h3>
-
-          <p class="location">
-            📍 Ndola
-          </p>
-
-          <div class="rating">
-            <span class="public-rating">PUBLIC</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a
-              href="tel:+260974445557"
-              class="action-call"
-            >
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260974445557"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
+      <a href="#businesses">
+        Directory
+      </a>
 
     </div>
+
+
+
+    <div>
+
+      <h4>
+        Support
+      </h4>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#home">
+        Contact
+      </a>
+
+      <a href="#home">
+        Terms
+      </a>
+
+    </div>
+
 
   </div>
 
-</section>
 
 
-<!-- =====================================================
-     DIRECTORY
-===================================================== -->
+  <div class="container footer-bottom">
 
-<section class="section directory-section" id="directory">
+    <span>
+      ©
+      <span id="year"></span>
+      Zambia Business Hub.
+      Built in Zambia 🇿🇲
+    </span>
 
-  <div class="container">
+    <span>
+      Supporting local businesses.
+      Building a stronger Zambia.
+    </span>
 
-    <div class="section-heading">
+  </div>
 
-      <span class="eyebrow">DIRECTORY</span>
+</footer>
 
-      <h2>Explore Businesses</h2>
 
-      <p>
-        Browse businesses across Zambia.
-      </p>
 
+<!-- BUSINESS MODAL -->
+
+<div
+  class="modal"
+  id="businessModal"
+  aria-hidden="true">
+
+
+  <div
+    class="modal-backdrop"
+    data-close-modal>
+  </div>
+
+
+  <div class="modal-box">
+
+    <button
+      class="modal-close"
+      data-close-modal
+      aria-label="Close">
+
+      ×
+
+    </button>
+
+
+    <div id="modalBody"></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- LISTING MODAL -->
+
+<div
+  class="modal"
+  id="listingModal"
+  aria-hidden="true">
+
+
+  <div
+    class="modal-backdrop"
+    data-close-listing>
+  </div>
+
+
+  <div class="modal-box form-box">
+
+    <button
+      class="modal-close"
+      data-close-listing
+      aria-label="Close">
+
+      ×
+
+    </button>
+
+
+    <div class="eyebrow">
+      LIST YOUR BUSINESS
+      <span></span>
     </div>
 
 
-    <div class="directory-tools">
-
-      <select id="categoryFilter">
-
-        <option value="all">
-          All Categories
-        </option>
-
-        <option value="Restaurant">
-          Restaurants
-        </option>
-
-        <option value="Lodge">
-          Lodges
-        </option>
-
-        <option value="Beauty">
-          Beauty
-        </option>
-
-        <option value="Business Services">
-          Business Services
-        </option>
-
-      </select>
+    <h2>
+      Get discovered across Zambia.
+    </h2>
 
 
-      <button id="clearFilters">
-        Clear Filters
+    <form id="listingForm">
+
+
+      <input
+        id="ownerBusiness"
+        required
+        placeholder="Business name">
+
+
+      <input
+        id="ownerCategory"
+        required
+        placeholder="Category">
+
+
+      <input
+        id="ownerLocation"
+        required
+        placeholder="City / Location">
+
+
+      <input
+        id="ownerPhone"
+        required
+        placeholder="Phone number">
+
+
+      <textarea
+        id="ownerDescription"
+        rows="4"
+        placeholder="Short description">
+      </textarea>
+
+
+      <button
+        class="primary-btn"
+        type="submit">
+
+        Submit Listing Request
+
       </button>
 
-    </div>
 
+      <p
+        id="listingMessage"
+        class="form-message">
+      </p>
 
-    <p id="resultsText" class="results-text">
-      Showing all businesses
-    </p>
 
+    </form>
 
-    <div class="business-grid directory-grid" id="businessGrid">
+  </div>
 
+</div>
 
-      <!-- 1 -->
 
-      <article
-        class="business-card"
-        data-name="Copper Pot Restaurant"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
 
-        <div class="business-image restaurant">
-          🍽️
-        </div>
+<script src="app.js"></script>
 
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>Copper Pot Restaurant</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.7</strong>
-            <span>(246 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260211427700" class="action-call">
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260211427700"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 2 -->
-
-      <article
-        class="business-card"
-        data-name="3 Trees Cafe"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
-
-        <div class="business-image cafe">
-          ☕
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>3 Trees Cafe</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.4</strong>
-            <span>(2,297 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260978728652" class="action-call">
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260978728652"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 3 -->
-
-      <article
-        class="business-card"
-        data-name="Marlin Restaurant"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
-
-        <div class="business-image marlin">
-          🐟
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>Marlin Restaurant</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.2</strong>
-            <span>(1,677 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260211252206" class="action-call">
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260211252206"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 4 -->
-
-      <article
-        class="business-card"
-        data-name="MOSAIC RESTAURANT & CAFE"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
-
-        <div class="business-image mosaic">
-          🍴
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>MOSAIC RESTAURANT & CAFE</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.8</strong>
-            <span>(65 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260771036277" class="action-call">
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260771036277"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 5 -->
-
-      <article
-        class="business-card"
-        data-name="The Sanctuary Restaurant"
-        data-category="Restaurant"
-        data-location="lusaka"
-      >
-
-        <div class="business-image sanctuary">
-          🌿
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Restaurant
-          </span>
-
-          <h3>The Sanctuary Restaurant</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.5</strong>
-            <span>(185 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260978688866" class="action-call">
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260978688866"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 6 -->
-
-      <article
-        class="business-card"
-        data-name="Palmwood Lodge"
-        data-category="Lodge"
-        data-location="lusaka"
-      >
-
-        <div class="business-image lodge2">
-          🌴
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Lodge
-          </span>
-
-          <h3>Palmwood Lodge</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.0</strong>
-            <span>(740 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260966757954" class="action-call">
-              📞 Call
-            </a>
-
-            <a
-              href="https://wa.me/260966757954"
-              class="action-whatsapp"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- 7 -->
-
-      <article
-        class="business-card"
-        data-name="Lilayi Lodge"
-        data-category="Lodge"
-        data-location="lusaka"
-      >
-
-        <div class="business-image lodge">
-          🏨
-        </div>
-
-        <div class="business-content">
-
-          <span class="business-category">
-            Lodge
-          </span>
-
-          <h3>Lilayi Lodge</h3>
-
-          <p class="location">📍 Lusaka</p>
-
-          <div class="rating">
-            ⭐ <strong>4.5</strong>
-            <span>(1,386 reviews)</span>
-          </div>
-
-          <div class="business-actions">
-
-            <a href="tel:+260971002010
+</body>
+          </html>
